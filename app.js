@@ -42,12 +42,10 @@ function handlesubmit(e) {
 function displayEquationData() {
   // CGequationEl.innerHTML = CGequationEl.innerHTML.replace(/age/g, ageVar);
   if (sexVar==="female") {
-    // this calculation doesn't seem to be correct - or at least, the output units don't match mdcalc.com
-    creatinineClearance = ((140-ageVar)*0.85)/(72*creatinineVar);
+    creatinineClearance = (0.85 * ((140 - ageVar) / (creatinineVar)) * (weightVar / 72));
     appendHere.innerHTML = creatinineClearance;
   } else {
-    // this calculation doesn't seem to be correct - or at least, the output units don't match mdcalc.com
-    creatinineClearance = (140-ageVar)/(72*creatinineVar);
+    creatinineClearance = ((140 - ageVar) / (creatinineVar)) * (weightVar / 72);
     appendHere.innerHTML = creatinineClearance;
   }
 }
