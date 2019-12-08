@@ -6,3 +6,5 @@ uses the Cockcroft-Gault Equation and 2016-2017 UCLA Health Adult Anti-Infective
 
 Cockcroft-Gault Equation
 Creatinine Clearance = [[140 - age(yr)]*weight(kg)]/[72*serum Cr(mg/dL)] (multiply by 0.85 for women).
+
+form data example: https://codepen.io/gabrieleromanato/pen/LpLVeQ
