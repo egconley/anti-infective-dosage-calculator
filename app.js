@@ -6,6 +6,9 @@ let ageVar;
 let heightVar;
 let weightVar
 let creatinineVar;
+let userForm = document.getElementById('user-form');
+let appendHere = document.getElementById('appendTest');
+let CGequationEl = document.getElementById('CGequation');
 
 function Patient(sex, age, height, weight, creatinine) {
   this.sex = sex;
@@ -17,8 +20,6 @@ function Patient(sex, age, height, weight, creatinine) {
 }
 
 // Form
-let userForm = document.getElementById('user-form');
-let appendHere = document.getElementById('appendTest');
 userForm.addEventListener('submit', handlesubmit);
 
 function handlesubmit(e) {
@@ -39,6 +40,12 @@ function handlesubmit(e) {
 
 // Equation
 function displayEquationData() {
-  appendHere.innerHTML = weightVar;
+  // CGequationEl.innerHTML = CGequationEl.innerHTML.replace(/age/g, ageVar);
+  if (sexVar==="female") {
+    creatinineClearance = ((140-ageVar)*0.85)/(72*creatinineVar);
+    appendHere.innerHTML = creatinineClearance;
+  } else {
+    creatinineClearance = (140-ageVar)/(72*creatinineVar);
+    appendHere.innerHTML = creatinineClearance;
+  }
 }
-
