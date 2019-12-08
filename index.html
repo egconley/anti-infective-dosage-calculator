@@ -19,9 +19,10 @@
 
   <form id="user-form">
     <fieldset>
-      <h3>Submit Data</h2>
-        <label>sex:</label>
-        <input id="sexInput" type="text" placeholder="...">
+      <h3>Submit Data</h3>
+        <input type="radio" name="gender" value="male" id="sexInput"> male
+        <input type="radio" name="gender" value="female" id="sexInput"> female
+        <!-- <input id="sexInput" type="text" placeholder="..."> -->
         <br>
         <label>age:</label>
         <input id="ageInput" type="number" placeholder="...">
@@ -38,11 +39,12 @@
         <button value="submit">Submit</button>
     </fieldset>
   </form>
-  <p id="appendTest"></p>
-  <p>
+  <span></span>
+  <p id="CGequation">
     \[C_{Cr} = {{(140 - age)} \over {72*S_{Cr}}}*0.85 (if female)\]
-    <br>
-    Abbreviations/ Units
+  </p>
+  <p><br>
+    <strong>Abbreviations/ Units</strong>
     <br>
     CCr (creatinine clearance) = mL/minute
     <br>
@@ -52,6 +54,8 @@
     <br>
     SCr (serum creatinine) = mg/dL
   </p>
+  <h2>Result:</h2>
+  <p id="appendTest"></p>
   <script src="app.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
