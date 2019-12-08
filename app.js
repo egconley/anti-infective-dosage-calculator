@@ -1,6 +1,6 @@
 // alert('working!');
 
-let patientsArray =[];
+let patientsArray = [];
 let sexVar;
 let ageVar;
 let heightVar;
@@ -17,29 +17,28 @@ function Patient(sex, age, height, weight, creatinine) {
 }
 
 // Form
-var userForm = document.getElementById('user-form');
+let userForm = document.getElementById('user-form');
+let appendHere = document.getElementById('appendTest');
 userForm.addEventListener('submit', handlesubmit);
 
 function handlesubmit(e) {
   e.preventDefault();
-  // console.log('hey look: ');
-  // sayHello();
-  // var myName = event.target.inputEl.value;
-  // console.log(myName);
-  //to remove the previous footer row:
-  // tableDataEl.deleteRow(-1);
 
-sexVar = event.target.sexInput.value;
-ageVar = Number(event.target.ageInput.value);
-heightVar = Number(event.target.heightInput.value);
-weightVar = Number(event.target.weightInput.value);
-creatinineVar = Number(event.target.creatinineInput.value);
-let newPatient = new Patient(sexVar, ageVar, heightVar, weightVar, creatinineVar);
+  sexVar = event.target.sexInput.value;
+  ageVar = Number(event.target.ageInput.value);
+  heightVar = Number(event.target.heightInput.value);
+  weightVar = Number(event.target.weightInput.value);
+  creatinineVar = Number(event.target.creatinineInput.value);
 
-console.log(newPatient);
+  let newPatient = new Patient(sexVar, ageVar, heightVar, weightVar, creatinineVar);
 
-  // newStore.genHourlyCustVolume();
-  // newStore.genHourlyCookieVolume();
-  // newStore.render();
+  console.log(newPatient);
+
+  displayEquationData()
+}
+
+// Equation
+function displayEquationData() {
+  appendHere.innerHTML = weightVar;
 }
 
