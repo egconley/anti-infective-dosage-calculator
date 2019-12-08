@@ -42,9 +42,11 @@ function handlesubmit(e) {
 function displayEquationData() {
   // CGequationEl.innerHTML = CGequationEl.innerHTML.replace(/age/g, ageVar);
   if (sexVar==="female") {
+    // this calculation doesn't seem to be correct - or at least, the output units don't match mdcalc.com
     creatinineClearance = ((140-ageVar)*0.85)/(72*creatinineVar);
     appendHere.innerHTML = creatinineClearance;
   } else {
+    // this calculation doesn't seem to be correct - or at least, the output units don't match mdcalc.com
     creatinineClearance = (140-ageVar)/(72*creatinineVar);
     appendHere.innerHTML = creatinineClearance;
   }
