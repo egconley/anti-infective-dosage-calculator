@@ -4,6 +4,8 @@ uses the Cockcroft-Gault Equation and 2016-2017 UCLA Health Adult Anti-Infective
 # Resources
 2016-2017 UCLA Health Adult Anti-Infective Dosing Guidelines [link](https://asp.mednet.ucla.edu/files/view/UCLAAdultDosingCard.pdf)
 
+UW Medicine Renal Dosing Guidelines[link](https://occam.uwmedicine.org/antibiotic-reference-kit/uw-medicine-renal-dosing-guidelines/)
+
 ### Cockcroft-Gault Equation
 Creatinine Clearance = Sex * ((140 - Age) / (Serumcreatinine)) * (Estimatedleanbodyweight / 72)
 
