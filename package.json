@@ -1,0 +1,26 @@
+{
+  "name": "anti-infective-dosage-calculator",
+  "version": "1.0.0",
+  "description": "uses the Cockcroft-Gault Equation and 2016-2017 UCLA Health Adult Anti-Infective Dosing Guidelines to output antibiotic dosage for adults",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egconley/anti-infective-dosage-calculator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/egconley/anti-infective-dosage-calculator/issues"
+  },
+  "homepage": "https://github.com/egconley/anti-infective-dosage-calculator#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pg": "^7.14.0"
+  }
+}

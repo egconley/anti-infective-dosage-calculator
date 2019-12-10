@@ -1,3 +1,5 @@
+'use strict';
+
 // alert('working!');
 
 let patientsArray = [];
