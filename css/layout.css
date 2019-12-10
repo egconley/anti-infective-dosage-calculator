@@ -85,6 +85,7 @@ h1 {
   grid-row: 3 / 4; 
   border: 1px solid #E3E3E3;
   border-radius: 3px;
+  margin-right: 8px;
 }
 #ageLabel {
   grid-column: 1 / 2;
@@ -99,6 +100,7 @@ h1 {
   grid-row: 4 / 5; 
   border: 1px solid #E3E3E3;
   border-radius: 3px;
+  margin-right: 8px;
 }
 #heightLabel {
   grid-column: 1 / 2;
@@ -113,6 +115,7 @@ h1 {
   grid-row: 5 / 6; 
   border: 1px solid #E3E3E3;
   border-radius: 3px;
+  margin-right: 8px;
 }
 #weightLabel {
   grid-column: 1 / 2;
@@ -127,6 +130,7 @@ h1 {
   grid-row: 6 / 7; 
   border: 1px solid #E3E3E3;
   border-radius: 3px;
+  margin-right: 8px;
 }
 #creatinineLabel {
   grid-column: 1 / 2;
