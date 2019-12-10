@@ -17,4 +17,9 @@ button {
   padding-top: 4px;
   padding-bottom: 4px;
   margin: 3px;
+  margin-right: 8px;
+}
+
+#appendTest {
+  color: black;
 }

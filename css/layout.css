@@ -45,13 +45,8 @@ h1 {
 }
 /* burger menu - end */
 
-/* form layout */
-/* form {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
-} */
 
+/* RADIO BUTTON STYLING RESOURCE https://blog.bitsrc.io/customise-radio-buttons-without-compromising-accessibility-b03061b5ba93*/
 #user-form {
   display: grid;
   grid-template-columns: 200px 1fr;
@@ -61,51 +56,83 @@ h1 {
 #calculateNote {
   grid-column: 1 / 3;
   grid-row: 1 / 2;
+  display: flex;
+  align-self: center;
+  padding-left: 8px;
 }
 
 #sexLabel {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
+  display: flex;
+  align-self: center;
+  padding-left: 8px;
 }
 #radio {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
+  display: flex;
+  align-self: center;
 }
 
 #ageInput {
   grid-column: 2 / 3;
   grid-row: 3 / 4; 
+  border: 1px solid #E3E3E3;
+  border-radius: 3px;
+  margin-right: 8px;
 }
 #ageLabel {
   grid-column: 1 / 2;
   grid-row: 3 / 4; 
+  display: flex;
+  align-self: center;
+  padding-left: 8px;
 }
 
 #heightInput {
   grid-column: 2 / 3;
   grid-row: 4 / 5; 
+  border: 1px solid #E3E3E3;
+  border-radius: 3px;
+  margin-right: 8px;
 }
 #heightLabel {
   grid-column: 1 / 2;
   grid-row: 4 / 5; 
+  display: flex;
+  align-self: center;
+  padding-left: 8px;
 }
 
 #weightInput {
   grid-column: 2 / 3;
   grid-row: 5 / 6; 
+  border: 1px solid #E3E3E3;
+  border-radius: 3px;
+  margin-right: 8px;
 }
 #weightLabel {
   grid-column: 1 / 2;
   grid-row: 5 / 6; 
+  display: flex;
+  align-self: center;
+  padding-left: 8px;
 }
 
 #creatinineInput {
   grid-column: 2 / 3;
   grid-row: 6 / 7; 
+  border: 1px solid #E3E3E3;
+  border-radius: 3px;
+  margin-right: 8px;
 }
 #creatinineLabel {
   grid-column: 1 / 2;
   grid-row: 6 / 7;  
+  display: flex;
+  align-self: center;
+  padding-left: 8px;
 }
 
 button {
@@ -116,4 +143,5 @@ button {
 #result {
   grid-column: 1 / 3;
   grid-row: 8 / 9;  
+  padding-left: 8px;
 }
