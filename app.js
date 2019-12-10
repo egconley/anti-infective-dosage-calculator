@@ -43,10 +43,10 @@ function displayEquationData() {
   // CGequationEl.innerHTML = CGequationEl.innerHTML.replace(/age/g, ageVar);
   if (sexVar==="female") {
     creatinineClearance = (0.85 * ((140 - ageVar) / (creatinineVar)) * (weightVar / 72));
-    appendHere.innerHTML = creatinineClearance;
+    appendHere.innerHTML = creatinineClearance.toFixed(1);
   } else {
     creatinineClearance = ((140 - ageVar) / (creatinineVar)) * (weightVar / 72);
-    appendHere.innerHTML = creatinineClearance;
+    appendHere.innerHTML = creatinineClearance.toFixed(1);
   }
 }
 
