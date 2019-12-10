@@ -1,0 +1,20 @@
+#menuContainer li {
+  list-style: none;
+}
+
+input {
+  font-size: 15px;
+}
+
+button {
+  font-size: 15px;
+  background-color: #C60021;
+  color: #F6F6F8;
+  border: none;
+  border-radius: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin: 3px;
+}

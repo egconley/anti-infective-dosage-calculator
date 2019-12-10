@@ -6,45 +6,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/modules.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono&display=swap" rel="stylesheet">
   <title>Anti-Infective Dosage Calculator</title>
 </head>
 
 <body>
-  <h1>Anti-Infective Dosage Calculator</h1>
-  <!-- <form id="myform" action="#" method="post">
-    <fieldset>
-      <input type="text" onchange="submit();return false">
-      <label for="test">test</label>
-    </fieldset>
-  </form> -->
-
+    <nav>
+        <h1>Anti-Infective Dosage Calculator</h1>
+        <div id="menuItemContainer">    
+          <div id="burgerMenuContainer" onclick="burgerToX(this)">
+            <div id="bar1"></div>
+            <div id="bar2"></div>
+            <div id="bar3"></div>
+          </div>
+          <div id="menuContainer">
+            <ul>
+              <li>About the Project</li>
+              <li>Resources</li>
+              <li>Technical Documentation</li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div id="appendMenu"></div>
+      
   <form id="user-form">
-    <fieldset>
-      <h3>Submit Data</h3>
-        <input type="radio" name="gender" value="male" id="sexInput"> male
-        <input type="radio" name="gender" value="female" id="sexInput"> female
-        <!-- <input id="sexInput" type="text" placeholder="..."> -->
-        <br>
-        <label>age:</label>
+    <h3 id="calculateNote">Calculate creatinine clearance using the Cockcroft-Gault equation</h3>
+        <label id="sexLabel">Sex</label>
+        <div id="radio">
+            <input type="radio" name="gender" value="male" id="sexInput">m
+            <input type="radio" name="gender" value="female" id="sexInput">f
+        </div>
+        <label id="ageLabel">Age</label>
         <input id="ageInput" type="number" placeholder="years">
-        <br>
-        <label>height:</label>
+        <label id="heightLabel">Height</label>
         <input id="heightInput" type="number" step="0.01" placeholder="cm">
-        <br>
-        <label>weight:</label>
+        <label id="weightLabel">Weight</label>
         <input id="weightInput" type="number" step="0.01" placeholder="kg">
-        <br>
-        <label>creatinine:</label>
+        <label id="creatinineLabel">Serum Creatinine</label>
         <input id="creatinineInput" type="number" step="0.01" placeholder="mg/dL">
-        <br>
-        <button value="submit">Submit</button>
-    </fieldset>
+        <button value="submit">Calculate</button>
+    <h2 id="result">Result:<span id="appendTest"></span></h2>
   </form>
   <span></span>
-  <p id="CGequation">
+  <!-- <p id="CGequation">
     \[C_{Cr} = {{(140 - age)} \over {72*S_{Cr}}}*0.85 (if female)\]
-  </p>
-  <p><br>
+  </p> -->
+  <!-- <p><br>
     <strong>Abbreviations/ Units</strong>
     <br>
     CCr (creatinine clearance) = mL/minute
@@ -54,12 +65,14 @@
     Weight = kg
     <br>
     SCr (serum creatinine) = mg/dL
-  </p>
-  <h2>Result:</h2>
-  <p id="appendTest"></p>
-  <script src="app.js"></script>
+  </p> -->
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="app.js"></script>
 </body>
 
 </html>
