@@ -45,13 +45,8 @@ h1 {
 }
 /* burger menu - end */
 
-/* form layout */
-/* form {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
-} */
 
+/* RADIO BUTTON STYLING RESOURCE https://blog.bitsrc.io/customise-radio-buttons-without-compromising-accessibility-b03061b5ba93*/
 #user-form {
   display: grid;
   grid-template-columns: 200px 1fr;
