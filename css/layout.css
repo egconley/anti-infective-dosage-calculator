@@ -1,0 +1,119 @@
+/* nav - start */ 
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  display: inline-block;
+  padding: 6px;
+  font-size: 32px;
+}
+/* nav - end */ 
+
+/* burger menu - start */
+#burgerMenuContainer {
+  display: inline-block;
+  margin: 6px;
+}
+
+#bar1, #bar2, #bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #C60021;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+/* burger menu - on-click transition to X */
+.changeMenu #bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.changeMenu #bar2 {opacity: 0;}
+
+.changeMenu #bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+
+/* toggle menu display on-burger-menu-click */
+#menuContainer {
+  display: none; /* starts with display: none;, toggle triggered in burgerToX function */
+}
+/* burger menu - end */
+
+/* form layout */
+/* form {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
+} */
+
+#user-form {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+#calculateNote {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+}
+
+#sexLabel {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+#radio {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+#ageInput {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4; 
+}
+#ageLabel {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4; 
+}
+
+#heightInput {
+  grid-column: 2 / 3;
+  grid-row: 4 / 5; 
+}
+#heightLabel {
+  grid-column: 1 / 2;
+  grid-row: 4 / 5; 
+}
+
+#weightInput {
+  grid-column: 2 / 3;
+  grid-row: 5 / 6; 
+}
+#weightLabel {
+  grid-column: 1 / 2;
+  grid-row: 5 / 6; 
+}
+
+#creatinineInput {
+  grid-column: 2 / 3;
+  grid-row: 6 / 7; 
+}
+#creatinineLabel {
+  grid-column: 1 / 2;
+  grid-row: 6 / 7;  
+}
+
+button {
+  grid-column: 2 / 3;
+  grid-row: 7 / 8;  
+}
+
+#result {
+  grid-column: 1 / 3;
+  grid-row: 8 / 9;  
+}
