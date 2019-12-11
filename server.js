@@ -15,3 +15,18 @@ client.connect();
 client.on('error', err => console.error(err));
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+
+// Database queries
+// http://zetcode.com/javascript/nodepostgres/
+
+client.query('SELECT * FROM anti_microbial_drugs').then(res => {
+
+  const fields = res.fields.map(field => field.name);
+
+  console.log(fields);
+
+}).catch(err => {
+  console.log(err.stack);
+}).finally(() => {
+  client.end()
+});
