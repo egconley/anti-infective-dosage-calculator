@@ -20,7 +20,7 @@ client.on('error', err => console.error(err));
 app.get('/', homePage);
 
 function homePage(req, res) {
-  res.render('pages/index');
+  res.render('pages/index', { drugArrayKey: allDrugNames });
 }
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
@@ -51,16 +51,9 @@ client.query('SELECT drug_name FROM anti_microbial_drugs ORDER BY drug_name').th
 
   // const fields = res.fields.map(field => field.name);
   const drug_names = res.rows.map(name => name.drug_name);
-  // console.log('here: ', drug_names);
   drug_names.forEach(drug_name => {
-    // console.log(drug_name);
     new Drug(drug_name);
-    // console.log(drugInstance.drug_name);
-    // console.log(allDrugNames);
-    // $('select').append(`<option value=${drug}>${drug}</option>`);
   })
-
-  // console.log(drug_names);
 
 }).catch(err => {
   console.log(err.stack);
