@@ -2,17 +2,26 @@
 
 require('dotenv').config();
 const express = require('express');
+const app = express();
 const pg = require('pg');
 const cors = require('cors');
-const app = express();
+require('ejs');
 const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
 app.use(express.static('./public'));
+app.set('views', __dirname + '/public/views');
 
 const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
 client.on('error', err => console.error(err));
+
+app.get('/', homePage);
+
+function homePage(req, res) {
+  res.render('pages/index', { drugArrayKey: allDrugNames });
+}
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
@@ -42,16 +51,9 @@ client.query('SELECT drug_name FROM anti_microbial_drugs ORDER BY drug_name').th
 
   // const fields = res.fields.map(field => field.name);
   const drug_names = res.rows.map(name => name.drug_name);
-  // console.log('here: ', drug_names);
   drug_names.forEach(drug_name => {
-    // console.log(drug_name);
     new Drug(drug_name);
-    // console.log(drugInstance.drug_name);
-    // console.log(allDrugNames);
-    // $('select').append(`<option value=${drug}>${drug}</option>`);
   })
-
-  // console.log(drug_names);
 
 }).catch(err => {
   console.log(err.stack);
