@@ -1,7 +1,5 @@
 'use strict';
 
-// alert('working!');
-
 let patientsArray = [];
 let sexVar;
 let ageVar;
@@ -10,7 +8,6 @@ let weightVar
 let creatinineVar;
 let userForm = document.getElementById('user-form');
 let appendHere = document.getElementById('appendTest');
-let CGequationEl = document.getElementById('CGequation');
 
 function Patient(sex, age, height, weight, creatinine) {
   this.sex = sex;
