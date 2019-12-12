@@ -2,17 +2,26 @@
 
 require('dotenv').config();
 const express = require('express');
+const app = express();
 const pg = require('pg');
 const cors = require('cors');
-const app = express();
+require('ejs');
 const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
 app.use(express.static('./public'));
+app.set('views', __dirname + '/public/views');
 
 const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
 client.on('error', err => console.error(err));
+
+app.get('/', homePage);
+
+function homePage(req, res) {
+  res.render('pages/index');
+}
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
