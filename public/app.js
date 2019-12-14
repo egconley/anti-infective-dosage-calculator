@@ -8,6 +8,7 @@ let weightVar
 let creatinineVar;
 let userForm = document.getElementById('user-form');
 let appendHere = document.getElementById('appendTest');
+let creatinineClearance;
 
 // Drop down menu
 $('select').on('change', function(){
@@ -15,6 +16,7 @@ $('select').on('change', function(){
   console.log(selectedDrug);
 })
 
+// Form
 function Patient(sex, age, height, weight, creatinine) {
   this.sex = sex;
   this.age = age;
@@ -24,7 +26,6 @@ function Patient(sex, age, height, weight, creatinine) {
   patientsArray.push(this);
 }
 
-// Form
 userForm.addEventListener('submit', handlesubmit);
 
 function handlesubmit(e) {

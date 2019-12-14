@@ -3,12 +3,17 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser'); 
+app.use(bodyParser.json()); 
 const pg = require('pg');
 const cors = require('cors');
 require('ejs');
 const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
+
+let urlencodedParser = bodyParser.urlencoded({ extended: false });
+
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
 app.set('views', __dirname + '/public/views');
@@ -18,6 +23,11 @@ client.connect();
 client.on('error', err => console.error(err));
 
 app.get('/', homePage);
+
+app.post('/postDrug', urlencodedParser, function (req, res) {
+  console.log('post request successful!!')
+  console.log(req.body.drugs);
+});
 
 function homePage(req, res) {
   res.render('pages/index', { drugArrayKey: allDrugNames });
@@ -47,7 +57,7 @@ function Drug(drug) {
   allDrugNames.push(this);
 }
 
-client.query('SELECT drug_name FROM anti_microbial_drugs ORDER BY drug_name').then(res => {
+client.query('SELECT DISTINCT drug_name FROM anti_microbial_drugs ORDER BY drug_name').then(res => {
 
   // const fields = res.fields.map(field => field.name);
   const drug_names = res.rows.map(name => name.drug_name);
