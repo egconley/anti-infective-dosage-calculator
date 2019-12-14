@@ -27,6 +27,7 @@ app.get('/', homePage);
 app.post('/postDrug', urlencodedParser, function (req, res) {
   console.log('post request successful!!')
   console.log(req.body.drugs);
+  res.render('pages/index', { drugArrayKey: allDrugNames });
 });
 
 function homePage(req, res) {
