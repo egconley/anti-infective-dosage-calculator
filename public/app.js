@@ -13,6 +13,7 @@ let creatinineClearance;
 // Drop down menu
 $('select').on('change', function(){
   let selectedDrug = $(this).val()
+  console.log('jQuery connected to select')
   console.log(selectedDrug);
 })
 
