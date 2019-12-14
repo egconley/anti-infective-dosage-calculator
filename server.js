@@ -26,12 +26,12 @@ app.get('/', homePage);
 
 app.post('/postDrug', urlencodedParser, function (req, res) {
   console.log('post request successful!!')
-  console.log(req.body.drugs);
-  res.render('pages/index', { drugArrayKey: allDrugNames });
+  console.log('req.body.drugs: ', req.body.drugs);
+  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrug: req.body.drugs});
 });
 
 function homePage(req, res) {
-  res.render('pages/index', { drugArrayKey: allDrugNames });
+  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrug: null});
 }
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

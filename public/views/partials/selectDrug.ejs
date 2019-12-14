@@ -1,5 +1,9 @@
 <form id="selectDrugFrom" action="/postDrug" method="POST">
   <select name="drugs">
+    <% if (selectedDrug) { %>
+    <% console.log('selected drug value available!!', selectedDrug); %>
+    <option value="selectedDrug"><%= selectedDrug %></option>
+    <% } %>
     <% for(var i=0; i < drugArrayKey.length; i++) { %>
     <option value="<%= drugArrayKey[i].drug_name %>"><%= drugArrayKey[i].drug_name %></option>
     <!-- <input type="text" value="<%= drugArrayKey[i].drug_name %>"/> -->
