@@ -41,16 +41,6 @@ app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 // express and exports - modularization and passing variables between js files
 // from https://stackoverflow.com/questions/9765215/global-variable-in-app-js-accessible-in-routes
-// // In app.js:
-// app.locals.variable_you_need = 42;
-
-// // In index.js
-// exports.route = function(req, res){
-//     var variable_i_needed = req.app.locals.variable_you_need;
-// }
-// app.locals documentation
-// http://expressjs.com/en/api.html#app.locals
-// artile to read: https://www.sitepoint.com/understanding-module-exports-exports-node-js/
 
 let allDrugNames = [];
 function Drug(drug) {
@@ -60,7 +50,6 @@ function Drug(drug) {
 
 client.query('SELECT DISTINCT drug_name FROM anti_microbial_drugs ORDER BY drug_name').then(res => {
 
-  // const fields = res.fields.map(field => field.name);
   const drug_names = res.rows.map(name => name.drug_name);
   drug_names.forEach(drug_name => {
     new Drug(drug_name);
