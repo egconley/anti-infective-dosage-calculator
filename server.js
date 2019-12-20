@@ -3,8 +3,8 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser'); 
-app.use(bodyParser.json()); 
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 const pg = require('pg');
 const cors = require('cors');
 require('ejs');
@@ -24,25 +24,13 @@ client.on('error', err => console.error(err));
 
 app.get('/', homePage);
 
-app.post('/postDrug', urlencodedParser, function (req, res) {
-  console.log('post request successful!!')
-  console.log('req.body.drugs: ', req.body.drugs);
-  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrug: req.body.drugs});
-});
-
 function homePage(req, res) {
-  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrug: null});
+  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrug: null });
 }
 
-app.listen(PORT, () => console.log(`Listening on ${PORT}`));
-
-// Database queries
-// http://zetcode.com/javascript/nodepostgres/
-
-// express and exports - modularization and passing variables between js files
-// from https://stackoverflow.com/questions/9765215/global-variable-in-app-js-accessible-in-routes
-
 let allDrugNames = [];
+let selectedDrug;
+
 function Drug(drug) {
   this.drug_name = drug;
   allDrugNames.push(this);
@@ -58,5 +46,49 @@ client.query('SELECT DISTINCT drug_name FROM anti_microbial_drugs ORDER BY drug_
 }).catch(err => {
   console.log(err.stack);
 }).finally(() => {
-  client.end()
+  // client.end()
 });
+
+function getDose() {
+  const doseQuery = {
+    text: `SELECT 
+    a.drug_name, 
+    a.route, 
+    b.crcl_level, 
+    b.indication, 
+    b.dose, 
+    a.notes
+  FROM anti_microbial_drugs a
+  LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
+  WHERE a.drug_name = $1
+  ORDER BY drug_name;`,
+    values: [`${selectedDrug}`],
+  }
+  client.query(doseQuery).then(res => {
+
+    console.log('dose info from database', res.rows)
+
+  }).catch(err => {
+    console.log(err.stack);
+  }).finally(() => {
+    // client.end()
+  });
+}
+
+app.post('/postDrug', urlencodedParser, function (req, res) {
+  console.log('post request successful!!')
+  selectedDrug = req.body.drugs;
+  console.log('req.body.drugs: ', selectedDrug);
+
+  getDose();
+
+  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug });
+});
+
+// Database queries
+// http://zetcode.com/javascript/nodepostgres/
+
+// express and exports - modularization and passing variables between js files
+// from https://stackoverflow.com/questions/9765215/global-variable-in-app-js-accessible-in-routes
+
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
