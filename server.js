@@ -25,7 +25,7 @@ client.on('error', err => console.error(err));
 app.get('/', homePage);
 
 function homePage(req, res) {
-  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: null, CrClKey: null });
+  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: null, CrClKey: null, doseRecKey: null });
 }
 
 let allDrugNames = [];
@@ -37,6 +37,8 @@ let heightVar;
 let weightVar
 let creatinineVar;
 let creatinineClearance;
+let doseGuidelines;
+let doseRec;
 
 function Drug(drug) {
   this.drug_name = drug;
@@ -50,6 +52,15 @@ function Patient(sex, age, height, weight, creatinine) {
   this.weight = weight;
   this.creatinine = creatinine;
   patientsArray.push(this);
+}
+
+function DoseGuidelines(doseGuidelines) {
+  this.drug_name = doseGuidelines.drug_name;
+  this.route = doseGuidelines.route;
+  this.crcl_level = doseGuidelines.crcl_level;
+  this.indication = doseGuidelines.indication;
+  this.dose = doseGuidelines.dose;
+  this.notes = doseGuidelines.notes;
 }
 
 client.query('SELECT DISTINCT drug_name FROM anti_microbial_drugs ORDER BY drug_name').then(res => {
@@ -83,7 +94,12 @@ function getDose() {
   }
   client.query(doseQuery).then(res => {
 
-    console.log('dose info from database', res.rows)
+    //////TODO: HANDLE WHEN THERE ARE MULTIPLE ROWS THAT NEED TO BE DISPLAYED.
+    console.log('dose info from database', res.rows[0])
+    doseGuidelines = res.rows[0];
+    doseRec = new DoseGuidelines(doseGuidelines);
+
+    console.log('dose rec in getDose: ', doseRec);
 
   }).catch(err => {
     console.log(err.stack);
@@ -97,7 +113,7 @@ app.post('/postDrug', urlencodedParser, function (req, res) {
   selectedDrug = req.body.drugs;
   console.log('req.body.drugs: ', selectedDrug);
 
-  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: null });
+  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: null, doseRecKey: null });
 });
 
 app.post('/postCrCl', urlencodedParser, function (req, res) {
@@ -116,8 +132,9 @@ app.post('/postCrCl', urlencodedParser, function (req, res) {
   getDose();
 
   console.log('CrCl: ', creatinineClearance)
+  console.log('dose rec in app.post: ', doseRec);
 
-  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: creatinineClearance});
+  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: creatinineClearance, doseRecKey: doseRec});
 })
 
 // Equation
