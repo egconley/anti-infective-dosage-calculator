@@ -30,6 +30,7 @@ function homePage(req, res) {
 
 let allDrugNames = [];
 let selectedDrug;
+let dose;
 
 function Drug(drug) {
   this.drug_name = drug;
@@ -66,7 +67,9 @@ function getDose() {
   }
   client.query(doseQuery).then(res => {
 
-    console.log('dose info from database', res.rows)
+    dose = res.rows[0].dose;
+    console.log('dose info from database', dose)
+
 
   }).catch(err => {
     console.log(err.stack);
