@@ -123,9 +123,9 @@ app.post('/postCrCl', urlencodedParser, function (req, res) {
 // Equation
 function calculateCrCl() {
   if (sexVar==="female") {
-    creatinineClearance = Math.round((0.85 * ((140 - ageVar) / (creatinineVar)) * (weightVar / 72)))/100;
+    creatinineClearance = (0.85 * ((140 - ageVar) / (creatinineVar)) * (weightVar / 72));
   } else {
-    creatinineClearance = Math.round(((140 - ageVar) / (creatinineVar)) * (weightVar / 72))/100;
+    creatinineClearance = ((140 - ageVar) / (creatinineVar)) * (weightVar / 72);
   }
 }
 
