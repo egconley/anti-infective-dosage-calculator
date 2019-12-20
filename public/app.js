@@ -1,7 +1,4 @@
 'use strict';
-// let userForm = document.getElementById('user-form');
-// let appendHere = document.getElementById('appendTest');
-
 
 // Drop down menu
 $('select').on('change', function(){
@@ -18,8 +15,3 @@ function burgerToX(x) {
   $('#menuContainer li').css('padding', '3px');
 }
 
-// function displayEquationData() {
-//   appendHere.innerHTML = creatinineClearance.toFixed(1);
-// }
-
-// exports.displayEquationData = displayEquationData;

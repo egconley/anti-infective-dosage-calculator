@@ -37,7 +37,6 @@ let heightVar;
 let weightVar
 let creatinineVar;
 let creatinineClearance;
-let dose;
 
 function Drug(drug) {
   this.drug_name = drug;
@@ -84,9 +83,7 @@ function getDose() {
   }
   client.query(doseQuery).then(res => {
 
-    // dose = res.rows.dose;
     console.log('dose info from database', res.rows)
-
 
   }).catch(err => {
     console.log(err.stack);
@@ -106,7 +103,7 @@ app.post('/postDrug', urlencodedParser, function (req, res) {
 app.post('/postCrCl', urlencodedParser, function (req, res) {
   console.log('post request successful!!', req.body);
 
-  sexVar = req.body.gender;
+  sexVar = req.body.sex;
   ageVar = Number(req.body.age);
   heightVar = Number(req.body.height);
   weightVar = Number(req.body.weight);
@@ -123,10 +120,6 @@ app.post('/postCrCl', urlencodedParser, function (req, res) {
   res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: creatinineClearance});
 })
 
-function handlePatientInput(req) {
-
-}
-
 // Equation
 function calculateCrCl() {
   if (sexVar==="female") {
@@ -135,7 +128,6 @@ function calculateCrCl() {
     creatinineClearance = ((140 - ageVar) / (creatinineVar)) * (weightVar / 72);
   }
 }
-
 
 // Database queries
 // http://zetcode.com/javascript/nodepostgres/
