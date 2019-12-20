@@ -25,16 +25,32 @@ client.on('error', err => console.error(err));
 app.get('/', homePage);
 
 function homePage(req, res) {
-  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrug: null });
+  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: null, CrClKey: null });
 }
 
 let allDrugNames = [];
 let selectedDrug;
+let patientsArray = [];
+let sexVar;
+let ageVar;
+let heightVar;
+let weightVar
+let creatinineVar;
+let creatinineClearance;
 let dose;
 
 function Drug(drug) {
   this.drug_name = drug;
   allDrugNames.push(this);
+}
+
+function Patient(sex, age, height, weight, creatinine) {
+  this.sex = sex;
+  this.age = age;
+  this.height = height;
+  this.weight = weight;
+  this.creatinine = creatinine;
+  patientsArray.push(this);
 }
 
 client.query('SELECT DISTINCT drug_name FROM anti_microbial_drugs ORDER BY drug_name').then(res => {
@@ -51,6 +67,7 @@ client.query('SELECT DISTINCT drug_name FROM anti_microbial_drugs ORDER BY drug_
 });
 
 function getDose() {
+  console.log('CrCl available for dose: ', creatinineClearance)
   const doseQuery = {
     text: `SELECT 
     a.drug_name, 
@@ -61,14 +78,14 @@ function getDose() {
     a.notes
   FROM anti_microbial_drugs a
   LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
-  WHERE a.drug_name = $1
+  WHERE a.drug_name = $1 AND $2 > b.crcl_cutoff_low AND $2 < b.crcl_cutoff_high 
   ORDER BY drug_name;`,
-    values: [`${selectedDrug}`],
+    values: [`${selectedDrug}`, `${creatinineClearance}`],
   }
   client.query(doseQuery).then(res => {
 
-    dose = res.rows[0].dose;
-    console.log('dose info from database', dose)
+    // dose = res.rows.dose;
+    console.log('dose info from database', res.rows)
 
 
   }).catch(err => {
@@ -79,14 +96,46 @@ function getDose() {
 }
 
 app.post('/postDrug', urlencodedParser, function (req, res) {
-  console.log('post request successful!!')
+  // console.log('post request successful!!');
   selectedDrug = req.body.drugs;
   console.log('req.body.drugs: ', selectedDrug);
 
+  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: null });
+});
+
+app.post('/postCrCl', urlencodedParser, function (req, res) {
+  console.log('post request successful!!', req.body);
+
+  sexVar = req.body.gender;
+  ageVar = Number(req.body.age);
+  heightVar = Number(req.body.height);
+  weightVar = Number(req.body.weight);
+  creatinineVar = Number(req.body.serumCr);
+
+  let newPatient = new Patient(sexVar, ageVar, heightVar, weightVar, creatinineVar);
+
+  console.log(newPatient);
+  calculateCrCl();
   getDose();
 
-  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug });
-});
+  console.log('CrCl: ', creatinineClearance)
+
+  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: creatinineClearance});
+})
+
+function handlePatientInput(req) {
+
+}
+
+// Equation
+function calculateCrCl() {
+  if (sexVar==="female") {
+    creatinineClearance = (0.85 * ((140 - ageVar) / (creatinineVar)) * (weightVar / 72));
+  } else {
+    creatinineClearance = ((140 - ageVar) / (creatinineVar)) * (weightVar / 72);
+  }
+}
+
 
 // Database queries
 // http://zetcode.com/javascript/nodepostgres/
