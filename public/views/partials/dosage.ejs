@@ -1,1 +1,8 @@
-<h2><% console.log('ejs doseRecKey', doseRecKey) %></h2>
+<h2>
+  <% if (doseRecKey) { %>
+  <%= doseRecKey.dose %>
+  <% } else %>
+  <% { %>
+    <% console.log(`doseRecKey = ${doseRecKey}`) %>
+  <% } %>
+</h2>

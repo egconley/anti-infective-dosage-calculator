@@ -63,6 +63,7 @@ function DoseGuidelines(doseGuidelines) {
   this.notes = doseGuidelines.notes;
 }
 
+// populate dropdown menu with drug names
 client.query('SELECT DISTINCT drug_name FROM anti_microbial_drugs ORDER BY drug_name').then(res => {
 
   const drug_names = res.rows.map(name => name.drug_name);
@@ -76,6 +77,7 @@ client.query('SELECT DISTINCT drug_name FROM anti_microbial_drugs ORDER BY drug_
   // client.end()
 });
 
+// get dose rec data for selected drug
 function getDose() {
   console.log('CrCl available for dose: ', creatinineClearance)
   const doseQuery = {
@@ -92,6 +94,7 @@ function getDose() {
   ORDER BY drug_name;`,
     values: [`${selectedDrug}`, `${creatinineClearance}`],
   }
+
   client.query(doseQuery).then(res => {
 
     //////TODO: HANDLE WHEN THERE ARE MULTIPLE ROWS THAT NEED TO BE DISPLAYED.
@@ -99,7 +102,7 @@ function getDose() {
     doseGuidelines = res.rows[0];
     doseRec = new DoseGuidelines(doseGuidelines);
 
-    console.log('dose rec in getDose: ', doseRec);
+    // console.log('dose rec in getDose: ', doseRec);
 
   }).catch(err => {
     console.log(err.stack);
@@ -107,12 +110,6 @@ function getDose() {
     // client.end()
   });
 }
-
-// app.post('/postDrug', urlencodedParser, function (req, res) {
-//   // console.log('post request successful!!');
-
-//   res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: null, doseRecKey: null });
-// });
 
 app.post('/post', urlencodedParser, function (req, res) {
   console.log('post request successful!!', req.body);
@@ -129,13 +126,44 @@ app.post('/post', urlencodedParser, function (req, res) {
   let newPatient = new Patient(sexVar, ageVar, heightVar, weightVar, creatinineVar);
 
   console.log(newPatient);
-  calculateCrCl();
-  getDose();
 
-  console.log('CrCl: ', creatinineClearance)
-  console.log('dose rec in app.post: ', doseRec);
+  calculateCrCl()
 
-  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: creatinineClearance, doseRecKey: doseRec});
+  console.log('CrCl available for dose: ', creatinineClearance)
+
+  // get dose
+  const doseQuery = {
+    text: `SELECT 
+    a.drug_name, 
+    a.route, 
+    b.crcl_level, 
+    b.indication, 
+    b.dose, 
+    a.notes
+  FROM anti_microbial_drugs a
+  LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
+  WHERE a.drug_name = $1 AND $2 > b.crcl_cutoff_low AND $2 < b.crcl_cutoff_high 
+  ORDER BY drug_name;`,
+    values: [`${selectedDrug}`, `${creatinineClearance}`],
+  }
+
+  client.query(doseQuery).then(res => {
+
+    //////TODO: HANDLE WHEN THERE ARE MULTIPLE ROWS THAT NEED TO BE DISPLAYED.
+    console.log('dose info from database', res.rows[0])
+    doseGuidelines = res.rows[0];
+    doseRec = new DoseGuidelines(doseGuidelines);
+
+    console.log('dose rec in getDose: ', doseRec.dose);
+
+  }).catch(err => {
+    console.log(err.stack);
+  }).finally(() => {
+    // client.end()
+  });
+
+  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: creatinineClearance, doseRecKey: doseRec})
+
 })
 
 // Equation
