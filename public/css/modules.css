@@ -3,11 +3,24 @@
 }
 
 input {
-  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+select {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  border-radius: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin: 3px;
+  margin-right: 8px;
 }
 
 button {
-  font-size: 15px;
+  font-size: 16px;
   background-color: #C60021;
   color: #F6F6F8;
   border: none;

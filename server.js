@@ -108,16 +108,17 @@ function getDose() {
   });
 }
 
-app.post('/postDrug', urlencodedParser, function (req, res) {
-  // console.log('post request successful!!');
+// app.post('/postDrug', urlencodedParser, function (req, res) {
+//   // console.log('post request successful!!');
+
+//   res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: null, doseRecKey: null });
+// });
+
+app.post('/post', urlencodedParser, function (req, res) {
+  console.log('post request successful!!', req.body);
+
   selectedDrug = req.body.drugs;
   console.log('req.body.drugs: ', selectedDrug);
-
-  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: null, doseRecKey: null });
-});
-
-app.post('/postCrCl', urlencodedParser, function (req, res) {
-  console.log('post request successful!!', req.body);
 
   sexVar = req.body.sex;
   ageVar = Number(req.body.age);
