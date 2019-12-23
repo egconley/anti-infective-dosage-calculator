@@ -42,6 +42,7 @@ let creatinineClearance;
 let doseGuidelines;
 let doseRec;
 
+// Constructors
 function Drug(drug) {
   this.drug_name = drug;
   allDrugNames.push(this);
@@ -74,6 +75,19 @@ function calculateCrCl() {
   }
 }
 
+// User Patient Input
+function handlePatientInfo(req) {
+  sexVar = req.body.sex;
+  ageVar = Number(req.body.age);
+  heightVar = Number(req.body.height);
+  weightVar = Number(req.body.weight);
+  creatinineVar = Number(req.body.serumCr);
+
+  let newPatient = new Patient(sexVar, ageVar, heightVar, weightVar, creatinineVar);
+
+  console.log(newPatient);
+}
+
 // populate dropdown menu with drug names
 client.query('SELECT DISTINCT drug_name FROM anti_microbial_drugs ORDER BY drug_name').then(res => {
 
@@ -94,16 +108,7 @@ app.post('/post', urlencodedParser, function (req, res) {
   let selectedDrug = req.body.drugs;
   console.log('req.body.drugs: ', selectedDrug);
 
-  sexVar = req.body.sex;
-  ageVar = Number(req.body.age);
-  heightVar = Number(req.body.height);
-  weightVar = Number(req.body.weight);
-  creatinineVar = Number(req.body.serumCr);
-
-  let newPatient = new Patient(sexVar, ageVar, heightVar, weightVar, creatinineVar);
-
-  console.log(newPatient);
-
+  handlePatientInfo(req)
   calculateCrCl()
 
   console.log('CrCl available for dose: ', creatinineClearance)
