@@ -24,12 +24,14 @@ client.on('error', err => console.error(err));
 
 app.get('/', homePage);
 
+// const constructors = require('./constructors.js'); 
+
 function homePage(req, res) {
   res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: null, CrClKey: null, doseRecKey: null });
 }
 
 let allDrugNames = [];
-let selectedDrug;
+// let selectedDrug;
 let patientsArray = [];
 let sexVar;
 let ageVar;
@@ -77,44 +79,10 @@ client.query('SELECT DISTINCT drug_name FROM anti_microbial_drugs ORDER BY drug_
   // client.end()
 });
 
-// get dose rec data for selected drug
-function getDose() {
-  console.log('CrCl available for dose: ', creatinineClearance)
-  const doseQuery = {
-    text: `SELECT 
-    a.drug_name, 
-    a.route, 
-    b.crcl_level, 
-    b.indication, 
-    b.dose, 
-    a.notes
-  FROM anti_microbial_drugs a
-  LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
-  WHERE a.drug_name = $1 AND $2 > b.crcl_cutoff_low AND $2 < b.crcl_cutoff_high 
-  ORDER BY drug_name;`,
-    values: [`${selectedDrug}`, `${creatinineClearance}`],
-  }
-
-  client.query(doseQuery).then(res => {
-
-    //////TODO: HANDLE WHEN THERE ARE MULTIPLE ROWS THAT NEED TO BE DISPLAYED.
-    console.log('dose info from database', res.rows[0])
-    doseGuidelines = res.rows[0];
-    doseRec = new DoseGuidelines(doseGuidelines);
-
-    // console.log('dose rec in getDose: ', doseRec);
-
-  }).catch(err => {
-    console.log(err.stack);
-  }).finally(() => {
-    // client.end()
-  });
-}
-
 app.post('/post', urlencodedParser, function (req, res) {
   console.log('post request successful!!', req.body);
 
-  selectedDrug = req.body.drugs;
+  let selectedDrug = req.body.drugs;
   console.log('req.body.drugs: ', selectedDrug);
 
   sexVar = req.body.sex;
@@ -147,31 +115,54 @@ app.post('/post', urlencodedParser, function (req, res) {
     values: [`${selectedDrug}`, `${creatinineClearance}`],
   }
 
-  client.query(doseQuery).then(res => {
+  
+  doseGuidelines = client.query(doseQuery).then(databaseResult => {
 
-    //////TODO: HANDLE WHEN THERE ARE MULTIPLE ROWS THAT NEED TO BE DISPLAYED.
-    console.log('dose info from database', res.rows[0])
-    doseGuidelines = res.rows[0];
+    console.log('databaseResult: ', databaseResult);
+    doseGuidelines = databaseResult.rows[0];
     doseRec = new DoseGuidelines(doseGuidelines);
+    let doseRecStringified = JSON.stringify(doseRec);
+    console.log('stringified dose rec', doseRecStringified);
+    
+    res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: creatinineClearance, doseRecKey: doseRec })
 
-    console.log('dose rec in getDose: ', doseRec.dose);
+  })
+  // console.log('no promise doseGuidelines: ', doseGuidelines);
+  
+  // .then(res => {
+  //   //////TODO: HANDLE WHEN THERE ARE MULTIPLE ROWS THAT NEED TO BE DISPLAYED.
+  //   return res.rows[0];
+  // }).catch(err => {
+  //   console.log(err.stack);
+  // }).finally(() => {
+  //   // client.end()
+  // });
 
-  }).catch(err => {
-    console.log(err.stack);
-  }).finally(() => {
-    // client.end()
-  });
+  // console.log('dose guidelines', doseGuidelines);
 
-  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: creatinineClearance, doseRecKey: doseRec})
+  // console.log('selected drug for query: ', selectedDrug);
+  // console.log('CrCl for query: ' ,creatinineClearance);
+  // console.log('dose info from database', res.rows[0]);
+  // doseGuidelines = res.rows[0];
+  // doseRec = new DoseGuidelines(doseGuidelines);
+
+  // console.log('dose rec in getDose: ', doseRec.dose);
+
+  ///// it's rendering the dose information from the previous query, not the current one.
+
+  /// doseRec undefined here
+  // console.log('dose rec before render: ', doseRec.dose);
+
+  
 
 })
 
 // Equation
 function calculateCrCl() {
-  if (sexVar==="female") {
-    creatinineClearance = Math.round((0.85 * ((140 - ageVar) / (creatinineVar)) * (weightVar / 72))*100)/100;
+  if (sexVar === "female") {
+    creatinineClearance = Math.round((0.85 * ((140 - ageVar) / (creatinineVar)) * (weightVar / 72)) * 100) / 100;
   } else {
-    creatinineClearance = Math.round(((140 - ageVar) / (creatinineVar)) * (weightVar / 72)*100)/100;
+    creatinineClearance = Math.round(((140 - ageVar) / (creatinineVar)) * (weightVar / 72) * 100) / 100;
   }
 }
 
