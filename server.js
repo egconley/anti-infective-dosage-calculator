@@ -65,6 +65,15 @@ function DoseGuidelines(doseGuidelines) {
   this.notes = doseGuidelines.notes;
 }
 
+// Equation
+function calculateCrCl() {
+  if (sexVar === "female") {
+    creatinineClearance = Math.round((0.85 * ((140 - ageVar) / (creatinineVar)) * (weightVar / 72)) * 100) / 100;
+  } else {
+    creatinineClearance = Math.round(((140 - ageVar) / (creatinineVar)) * (weightVar / 72) * 100) / 100;
+  }
+}
+
 // populate dropdown menu with drug names
 client.query('SELECT DISTINCT drug_name FROM anti_microbial_drugs ORDER BY drug_name').then(res => {
 
@@ -127,44 +136,7 @@ app.post('/post', urlencodedParser, function (req, res) {
     res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: creatinineClearance, doseRecKey: doseRec })
 
   })
-  // console.log('no promise doseGuidelines: ', doseGuidelines);
-  
-  // .then(res => {
-  //   //////TODO: HANDLE WHEN THERE ARE MULTIPLE ROWS THAT NEED TO BE DISPLAYED.
-  //   return res.rows[0];
-  // }).catch(err => {
-  //   console.log(err.stack);
-  // }).finally(() => {
-  //   // client.end()
-  // });
-
-  // console.log('dose guidelines', doseGuidelines);
-
-  // console.log('selected drug for query: ', selectedDrug);
-  // console.log('CrCl for query: ' ,creatinineClearance);
-  // console.log('dose info from database', res.rows[0]);
-  // doseGuidelines = res.rows[0];
-  // doseRec = new DoseGuidelines(doseGuidelines);
-
-  // console.log('dose rec in getDose: ', doseRec.dose);
-
-  ///// it's rendering the dose information from the previous query, not the current one.
-
-  /// doseRec undefined here
-  // console.log('dose rec before render: ', doseRec.dose);
-
-  
-
 })
-
-// Equation
-function calculateCrCl() {
-  if (sexVar === "female") {
-    creatinineClearance = Math.round((0.85 * ((140 - ageVar) / (creatinineVar)) * (weightVar / 72)) * 100) / 100;
-  } else {
-    creatinineClearance = Math.round(((140 - ageVar) / (creatinineVar)) * (weightVar / 72) * 100) / 100;
-  }
-}
 
 // Database queries
 // http://zetcode.com/javascript/nodepostgres/
