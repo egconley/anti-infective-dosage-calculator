@@ -33,6 +33,7 @@ function homePage(req, res) {
 let allDrugNames = [];
 // let selectedDrug;
 let patientsArray = [];
+let doseRecArray = [];
 let sexVar;
 let ageVar;
 let heightVar;
@@ -64,6 +65,7 @@ function DoseGuidelines(doseGuidelines) {
   this.indication = doseGuidelines.indication;
   this.dose = doseGuidelines.dose;
   this.notes = doseGuidelines.notes;
+  doseRecArray.push(this);
 }
 
 // Equation
@@ -133,13 +135,16 @@ app.post('/post', urlencodedParser, function (req, res) {
   doseGuidelines = client.query(doseQuery).then(databaseResult => {
 
     console.log('databaseResult: ', databaseResult);
-    doseGuidelines = databaseResult.rows[0];
-    doseRec = new DoseGuidelines(doseGuidelines);
+    doseGuidelines = databaseResult.rows;
+    doseRecArray = [];
+    for (let i=0; i<doseGuidelines.length; i++) {
+      new DoseGuidelines(doseGuidelines[i]);
+    }
+    
     let doseRecStringified = JSON.stringify(doseRec);
     console.log('stringified dose rec', doseRecStringified);
     
-    res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: creatinineClearance, doseRecKey: doseRec })
-
+    res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, CrClKey: creatinineClearance, doseRecKey: doseRecArray })
   })
 })
 
