@@ -1,8 +1,31 @@
-<h2>
-  <% if (doseRecKey) { %>
-  <%= doseRecKey.dose %>
-  <% } else %>
-  <% { %>
-    <% console.log(`doseRecKey = ${doseRecKey}`) %>
-  <% } %>
-</h2>
+<table>
+  <thead>
+  <tr>
+      <th>Drug</th>
+      <th>Route</th>
+      <th>Indication</th>
+      <th>CrCl Dose Range</th>
+      <th>Recommended Dose</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+      <% if (doseRecKey) { %>
+        <td><%= doseRecKey.drug_name %></td>
+        <td><%= doseRecKey.route %></td>
+        <td><%= doseRecKey.indication %></td>
+        <td><%= doseRecKey.crcl_level %></td>
+        <td class="dose"><%= doseRecKey.dose %></td>
+  </tr>
+</tbody>
+<tfoot> 
+  <tr>
+    <th>Notes</th>
+    <td class="notes" colspan="4"><%= doseRecKey.notes %></td>
+      <% } else %>
+      <% { %>
+        <% console.log(`doseRecKey = ${doseRecKey}`) %>
+      <% } %>
+  </tr>
+  </tfoot>
+</table>
