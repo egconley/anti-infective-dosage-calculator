@@ -33,6 +33,58 @@ button {
   margin-right: 8px;
 }
 
+#result {
+  padding: 20px;
+}
+
 #CrClResult {
-  color: black;
+  padding: 20px;
+}
+
+/* Table */
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th:nth-child(1) {
+  width: 13%;
+}
+
+thead th:nth-child(2) {
+  width: 5%;
+}
+
+thead th:nth-child(3) {
+  width: 17%;
+}
+
+thead th:nth-child(4) {
+  width: 18%;
+}
+
+thead th:nth-child(5) {
+  width: 17%;
+}
+
+th {
+  font-weight: bold;
+  font-size: 110%;
+}
+
+.dose {
+  color: #C60021;
+  font-weight: bold;
+  font-size: 140%;
+}
+
+.notes {
+  font-style: italic;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
 }
