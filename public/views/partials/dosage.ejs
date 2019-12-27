@@ -9,23 +9,25 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
       <% if (doseRecKey) { %>
-        <td><%= doseRecKey.drug_name %></td>
-        <td><%= doseRecKey.route %></td>
-        <td><%= doseRecKey.indication %></td>
-        <td><%= doseRecKey.crcl_level %></td>
-        <td class="dose"><%= doseRecKey.dose %></td>
+        <% for (let i=0; i<doseRecKey.length; i++) { %>
+  <tr>
+        <td><%= doseRecKey[i].drug_name %></td>
+        <td><%= doseRecKey[i].route %></td>
+        <td><%= doseRecKey[i].indication %></td>
+        <td><%= doseRecKey[i].crcl_level %></td>
+        <td class="dose"><%= doseRecKey[i].dose %></td>
   </tr>
+  <% } %>
 </tbody>
 <tfoot> 
   <tr>
     <th>Notes</th>
-    <td class="notes" colspan="4"><%= doseRecKey.notes %></td>
+    <td class="notes" colspan="4"><%= doseRecKey[0].notes %></td>
+  </tr>
+  </tfoot>
       <% } else %>
       <% { %>
         <% console.log(`doseRecKey = ${doseRecKey}`) %>
       <% } %>
-  </tr>
-  </tfoot>
 </table>
