@@ -1,5 +1,7 @@
+DROP TABLE IF EXISTS anti_microbial_drugs;
+
 CREATE TABLE IF NOT EXISTS anti_microbial_drugs (
-  id SERIAL PRIMARY KEY,
+  id int,
   drug_name VARCHAR(255),
   route VARCHAR(5),
   notes VARCHAR(255),
@@ -7,8 +9,10 @@ CREATE TABLE IF NOT EXISTS anti_microbial_drugs (
   drug_name_short VARCHAR(255)
 );
 
+DROP TABLE IF EXISTS anti_microbial_drugs;
+
 CREATE TABLE IF NOT EXISTS dosing_by_CrCl_level (
-  id SERIAL PRIMARY KEY,
+  id int,
   drug_name VARCHAR(255),
   CrCl_level VARCHAR(255),
   indication VARCHAR(255),
