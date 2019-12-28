@@ -117,7 +117,7 @@ app.post('/post', urlencodedParser, function (req, res) {
 
   // get dose
   const doseQuery = {
-    text: `SELECT 
+    text: `SELECT DISTINCT
     a.drug_name, 
     a.route, 
     b.crcl_level, 
