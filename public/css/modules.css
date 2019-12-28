@@ -34,11 +34,15 @@ button {
 }
 
 #result {
-  padding: 20px;
+  /* padding: 20px; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: black;
 }
 
 #CrClResult {
-  padding: 20px;
+  padding: 5px;
+  color: #C60021;
 }
 
 /* Table */
