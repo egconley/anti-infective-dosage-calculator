@@ -84,7 +84,7 @@ th {
   /* color: #1abc9c; */
   color: #4285F4;
   font-weight: bold;
-  font-size: 140%;
+  font-size: 130%;
 }
 
 .notes {
@@ -94,4 +94,9 @@ th {
 th, td {
   padding: 10px;
   text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+table {
+  background-color: #F6F6F8;
 }
