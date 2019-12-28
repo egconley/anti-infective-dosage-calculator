@@ -21,7 +21,8 @@ h1 {
 #bar1, #bar2, #bar3 {
   width: 35px;
   height: 5px;
-  background-color: #1abc9c;
+  background-color: #4285F4;
+  /* background-color: #1abc9c; */
   margin: 6px 0;
   transition: 0.4s;
 }
