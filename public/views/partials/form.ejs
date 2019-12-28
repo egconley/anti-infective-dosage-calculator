@@ -1,4 +1,4 @@
-<form action="/post" method="POST">
+<form action="/dose" method="POST">
   <h3 id="selectDrugNote">1. Select an anti-infective drug</h3>
   <select name="drugs">
     <% if (selectedDrugKey) { %>
@@ -10,26 +10,32 @@
     <% } %>
   </select>
 
+  <label id="hdLabel">Hemodialysis</label>
+  <div id="hdRadio" onchange="displayPatientInputForm()">
+    <input type="radio" name="hd" value="yes" id="hdInput">yes
+    <input type="radio" name="hd" value="no" id="hdInput">no
+  </div>
   <h3 id="calculateNote">2. Calculate creatinine clearance using the Cockcroft-Gault equation</h3>
 
   <label id="sexLabel">Sex</label>
-  <div id="radio">
+  <div id="sexRadio">
     <input type="radio" name="sex" value="male" id="sexInput">male
     <input type="radio" name="sex" value="female" id="sexInput">female
   </div>
 
   <label id="ageLabel">Age</label>
   <input id="ageInput" type="number" name="age" placeholder="years">
-  
+
   <label id="heightLabel">Height</label>
   <input id="heightInput" type="number" name="height" step="0.01" placeholder="cm">
-  
+
   <label id="weightLabel">Weight</label>
   <input id="weightInput" type="number" name="weight" step="0.01" placeholder="kg">
-  
+
   <label id="creatinineLabel">Serum Creatinine</label>
   <input id="creatinineInput" type="number" step="0.01" name="serumCr" placeholder="mg/dL">
-  
-  <button value="submit">Calculate CrCl / Get Dose Guidance</button>
-  <h2 id="result">Creatinine Clearance =<span id="CrClResult"><%= CrClKey %></span></h2>
+
+  <button value="submit">Get Dose Guidance</button>
+  </div>
+
 </form>

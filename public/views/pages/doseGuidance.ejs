@@ -9,7 +9,11 @@
 
   <%- include('../partials/nav'); -%>
 
-  <%- include('../partials/form'); -%>
+  <% if (!isNaN(CrClKey)) { %>
+    <h2 id="result">Creatinine Clearance =<span id="CrClResult"><%= CrClKey %></span></h2>
+  <% } %>
+  
+  <%- include('../partials/dosage'); -%>
 
   <span></span>
 
