@@ -50,7 +50,7 @@ h1 {
 form {
   display: grid;
   grid-template-columns: 200px 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 0.5fr 1fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 1fr;
 }
 
 #selectDrugNote {
@@ -82,12 +82,18 @@ select {
   display: flex;
   align-self: center;
   padding-left: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
 }
 #radio {
   grid-column: 2 / 3;
   grid-row: 4 / 5;
   display: flex;
   align-self: center;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
 }
 
 #ageInput {
@@ -96,6 +102,9 @@ select {
   border: 1px solid #E3E3E3;
   border-radius: 3px;
   margin-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
 }
 #ageLabel {
   grid-column: 1 / 2;
@@ -103,6 +112,9 @@ select {
   display: flex;
   align-self: center;
   padding-left: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
 }
 
 #heightInput {
@@ -111,6 +123,9 @@ select {
   border: 1px solid #E3E3E3;
   border-radius: 3px;
   margin-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
 }
 #heightLabel {
   grid-column: 1 / 2;
@@ -118,6 +133,9 @@ select {
   display: flex;
   align-self: center;
   padding-left: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
 }
 
 #weightInput {
@@ -126,6 +144,9 @@ select {
   border: 1px solid #E3E3E3;
   border-radius: 3px;
   margin-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
 }
 #weightLabel {
   grid-column: 1 / 2;
@@ -133,6 +154,9 @@ select {
   display: flex;
   align-self: center;
   padding-left: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
 }
 
 #creatinineInput {
@@ -141,6 +165,9 @@ select {
   border: 1px solid #E3E3E3;
   border-radius: 3px;
   margin-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
 }
 #creatinineLabel {
   grid-column: 1 / 2;
@@ -148,6 +175,9 @@ select {
   display: flex;
   align-self: center;
   padding-left: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
 }
 
 button {
