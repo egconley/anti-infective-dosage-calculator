@@ -21,7 +21,7 @@ select {
 
 button {
   font-size: 16px;
-  background-color: #C60021;
+  background-color: #1abc9c;
   color: #F6F6F8;
   border: none;
   border-radius: 3px;
@@ -42,7 +42,7 @@ button {
 
 #CrClResult {
   padding: 5px;
-  color: #C60021;
+  color: #1abc9c;
 }
 
 /* Table */
@@ -79,7 +79,7 @@ th {
 }
 
 .dose {
-  color: #C60021;
+  color: #1abc9c;
   font-weight: bold;
   font-size: 140%;
 }
