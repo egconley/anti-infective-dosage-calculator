@@ -1,3 +1,4 @@
+--RESET HEROKU DATABASE https://gist.github.com/zulhfreelancer/ea140d8ef9292fa9165e
 --heroku pg:psql -f uw_dosing_guidelines_schema.sql -a dosage-calculator
 
 --DROP TABLE IF EXISTS anti_microbial_drugs;
