@@ -1,6 +1,6 @@
 <form action="/dose" method="POST">
   <h3 id="selectDrugNote">1. Select an anti-infective drug</h3>
-  <select name="drugs">
+  <select id="selectDrug" name="drugs" onchange="handleSelectedDrugForIndications()">
     <% if (selectedDrugKey) { %>
     <% console.log('selected drug value available!!', selectedDrugKey); %>
     <option value="selectedDrugKey"><%= selectedDrugKey %></option>
@@ -8,6 +8,10 @@
     <% for(var i=0; i < drugArrayKey.length; i++) { %>
     <option value="<%= drugArrayKey[i].drug_name %>"><%= drugArrayKey[i].drug_name %></option>
     <% } %>
+  </select>
+
+  <select id="selectIndication" name="indications">
+    <option value=""></option>
   </select>
 
   <label id="hdLabel">Hemodialysis</label>
