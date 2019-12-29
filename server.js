@@ -131,7 +131,12 @@ function getDose(drug) {
 }
 
 // populate dropdown menu with drug names
-client.query('SELECT DISTINCT drug_name FROM anti_microbial_drugs ORDER BY drug_name').then(res => {
+client.query(`SELECT DISTINCT drug_name 
+              FROM anti_microbial_drugs a
+              WHERE drug_name IN
+              (SELECT DISTINCT drug_name
+               FROM dosing_by_crcl_level)
+              ORDER BY drug_name;`).then(res => {
 
   const drug_names = res.rows.map(name => name.drug_name);
   drug_names.forEach(drug_name => {
