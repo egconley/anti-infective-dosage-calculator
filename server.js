@@ -34,7 +34,7 @@ let allDrugNames = [];
 // let selectedDrug;
 let patientsArray = [];
 let doseRecArray = [];
-let hdVar;
+// let hdVar;
 let sexVar;
 let ageVar;
 let heightVar;
@@ -142,6 +142,28 @@ client.query(`SELECT DISTINCT drug_name
     new Drug(drug_name);
   })
 
+}).catch(err => {
+  console.log(err.stack);
+}).finally(() => {
+  // client.end()
+});
+
+// list of drugs with specific indications for indication dropdown
+
+
+client.query(`SELECT DISTINCT
+             a.drug_name, b.indication
+             FROM anti_microbial_drugs a
+            LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
+            WHERE (b.indication IS NULL)=FALSE
+            ORDER BY drug_name;`).then(res => {
+  const drugsWithIndications = res.rows.map(name => name.drug_name);
+  // drugsWithIndications.forEach(drug_name => {
+  //   new Drug(drug_name);
+  console.log(drugsWithIndications);
+  //THINK ABOUT HOW TO REORGANIZE THIS DATA TO POPULATE A DRUG SPECIFIC DROPDOWN WITH INDICATIONS
+  console.log(res.rows);
+  // })
 }).catch(err => {
   console.log(err.stack);
 }).finally(() => {
