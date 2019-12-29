@@ -137,7 +137,6 @@ client.query(`SELECT DISTINCT drug_name
               (SELECT DISTINCT drug_name
                FROM dosing_by_crcl_level)
               ORDER BY drug_name;`).then(res => {
-
   const drug_names = res.rows.map(name => name.drug_name);
   drug_names.forEach(drug_name => {
     new Drug(drug_name);

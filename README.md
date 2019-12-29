@@ -1,5 +1,5 @@
 # anti-infective-dosage-calculator
-uses the Cockcroft-Gault Equation and 2016-2017 UCLA Health Adult Anti-Infective Dosing Guidelines to output antibiotic dosage for adults
+App that calculates creatinine clearance and renders the corresponding UW Medicine Renal Dosing Guidelines, given user-inputted patient data and selected anti-infective drug.
 
 # Resources
 2016-2017 UCLA Health Adult Anti-Infective Dosing Guidelines [link](https://asp.mednet.ucla.edu/files/view/UCLAAdultDosingCard.pdf)
