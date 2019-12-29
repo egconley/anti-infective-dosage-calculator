@@ -1,5 +1,39 @@
 'use strict';
 
+// let indications = require('drugIndications.JSON');
+// console.log('front end indications: ', indications);
+let allDrugsWithIndications = [];
+let selectedDrugFront;
+
+function DrugsWithIndications(drug, indication) {
+  this.drug_name = drug;
+  this.indication = indication;
+  allDrugsWithIndications.push(this);
+}
+
+// Drop down menu
+function handleSelectedDrugForIndications() {
+  selectedDrugFront = $("#selectDrug option:checked").val();
+  console.log(selectedDrugFront);
+  getIndications();
+}
+
+function getIndications() {
+  $('#selectIndication').empty();
+  $('#selectIndication').append(`<option value="default">select indication</option>`);
+  $.get('drugIndications.json').then(data => {
+    data.forEach(item => {
+      new DrugsWithIndications(item.drug_name, item.indication);
+    })
+    for (let i=0; i<allDrugsWithIndications.length; i++) {
+      if (allDrugsWithIndications[i].drug_name === selectedDrugFront) {
+        console.log('indication to append', allDrugsWithIndications[i].indication)
+        $('#selectIndication').append(`<option value=${allDrugsWithIndications[i].indication}>${allDrugsWithIndications[i].indication}</option>`);
+      }
+    }
+  });
+}
+
 // burger menu to X on click
 function burgerToX(x) {
   x.classList.toggle('changeMenu');
@@ -21,4 +55,3 @@ function displayPatientInputForm() {
     $('button').css( "display", "block" );
   }
 }
-

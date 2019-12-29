@@ -1,0 +1,101 @@
+[
+  { "drug_name": "Aztreonam", "indication": "Any" },
+  { "drug_name": "Aztreonam", "indication": "CF" },
+  { "drug_name": "Aztreonam", "indication": "NOT CF or Neutropenic fever" },
+  { "drug_name": "Aztreonam", "indication": "Neutropenic fever" },
+  {
+    "drug_name": "Cefepime",
+    "indication": "Neutropenic fever/Serious infection"
+  },
+  { "drug_name": "Ceftaroline", "indication": "Endocarditis" },
+  { "drug_name": "Ceftaroline", "indication": "Not Endocarditis" },
+  {
+    "drug_name": "Ceftazidime",
+    "indication": "Neutropenic fever; serious infection; Pseudomonas aeruginosa"
+  },
+  {
+    "drug_name": "Ceftazidime",
+    "indication": "Not neutropenic fever; serious infection; Pseudomonas aeruginosa"
+  },
+  { "drug_name": "Ceftriaxone", "indication": "CAP/Pyelo" },
+  { "drug_name": "Ceftriaxone", "indication": "Endocarditis" },
+  { "drug_name": "Ceftriaxone", "indication": "Meningitis" },
+  { "drug_name": "Ceftriaxone", "indication": "SBP/Osteo" },
+  {
+    "drug_name": "Colistin - NOT for cystic fibrosis",
+    "indication": "Any"
+  },
+  {
+    "drug_name": "Colistin - for Cystic Fibrosis",
+    "indication": "mild-moderate infection"
+  },
+  {
+    "drug_name": "Colistin - for Cystic Fibrosis",
+    "indication": "severe infection"
+  },
+  {
+    "drug_name": "Dalbavancin",
+    "indication": "Acute bacterial skin and skin structure infection"
+  },
+  { "drug_name": "Daptomycin", "indication": "MRSA Bacteremia" },
+  { "drug_name": "Daptomycin", "indication": "MSSA Bacteremia" },
+  { "drug_name": "Daptomycin", "indication": "Other" },
+  { "drug_name": "Daptomycin", "indication": "UTI" },
+  { "drug_name": "Daptomycin", "indication": "VRE Bacteremia" },
+  { "drug_name": "Fosfomycin", "indication": "Cystitis" },
+  { "drug_name": "Fosfomycin", "indication": "Pyelonephritis" },
+  { "drug_name": "Levofloxacin", "indication": "Cystitis" },
+  { "drug_name": "Levofloxacin", "indication": "Pyelonephritis" },
+  {
+    "drug_name": "Meropenem",
+    "indication": "Cystic fibrosis / meningitis"
+  },
+  {
+    "drug_name": "Meropenem",
+    "indication": "Neutropenic fever or Serious infection"
+  },
+  { "drug_name": "Micafungin", "indication": "Candidemia" },
+  { "drug_name": "Micafungin", "indication": "Esophageal candidiasis" },
+  { "drug_name": "Micafungin", "indication": "Prophylaxis" },
+  { "drug_name": "Nafcillin", "indication": "Any" },
+  { "drug_name": "Nitrofurantoin", "indication": "Cystitis" },
+  { "drug_name": "Nitrofurantoin", "indication": "Pyelonephritis" },
+  { "drug_name": "Oseltamivir", "indication": "Prophylaxis" },
+  { "drug_name": "Oseltamivir", "indication": "Treatment" },
+  {
+    "drug_name": "Oseltamivir - for pregnant women (or within two weeks of delivery)",
+    "indication": "Prophylaxis"
+  },
+  {
+    "drug_name": "Oseltamivir - for pregnant women (or within two weeks of delivery)",
+    "indication": "Treatment"
+  },
+  {
+    "drug_name": "Penicillin G Potassium",
+    "indication": "Endocarditis/ Neurosyphillis/NSTI"
+  },
+  { "drug_name": "Piperacillin/Tazobactam", "indication": "Any" },
+  {
+    "drug_name": "Polymixin B",
+    "indication": "Systemic infections due to multi-drug resistant organisms"
+  },
+  { "drug_name": "Rifampin", "indication": "Endocarditis" },
+  {
+    "drug_name": "Rifampin",
+    "indication": "Mycobacterial infection or prosthetic joint infection"
+  },
+  {
+    "drug_name": "Trimethoprim/Sulfamethoxazole",
+    "indication": "PJP prophylaxis"
+  },
+  {
+    "drug_name": "Trimethoprim/Sulfamethoxazole",
+    "indication": "Treatment of PJP or Stenotrophomonas"
+  },
+  { "drug_name": "Vancomycin", "indication": "Critically ill" },
+  { "drug_name": "Vancomycin", "indication": "Not critically ill" },
+  {
+    "drug_name": "Vancomycin - for C.difficile infections",
+    "indication": "C.difficile infections"
+  }
+]
