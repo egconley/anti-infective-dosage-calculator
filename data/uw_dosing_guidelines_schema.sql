@@ -1,4 +1,4 @@
---RESET HEROKU DATABASE https://gist.github.com/zulhfreelancer/ea140d8ef9292fa9165e
+--heroku pg:reset DATABASE -a dosage-calculator
 --heroku pg:psql -f uw_dosing_guidelines_schema.sql -a dosage-calculator
 
 --DROP TABLE IF EXISTS anti_microbial_drugs;
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS dosing_by_CrCl_level (
   drug_name_short VARCHAR(255)
 );
 
-\copy dosing_by_crcl_level (drug_name, crcl_level, indication, dose, crcl_cutoff_high, crcl_cutoff_low, drug_name_short) FROM 'dosing_by_crcl_levelEXP-12-28-19.csv' WITH CSV HEADER; 
+\copy dosing_by_crcl_level (drug_name, crcl_level, indication, dose, crcl_cutoff_high, crcl_cutoff_low, drug_name_short) FROM 'dosing_by_crcl_levelEXP-12-30-19.csv' WITH CSV HEADER; 
 
 --hd_dosingEXP-12-28-19.csv
 
