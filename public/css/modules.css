@@ -56,23 +56,19 @@ table {
 }
 
 thead th:nth-child(1) {
-  width: 13%;
+  width: 25%;
 }
 
 thead th:nth-child(2) {
-  width: 5%;
+  width: 25%;
 }
 
 thead th:nth-child(3) {
-  width: 17%;
+  width: 25%;
 }
 
 thead th:nth-child(4) {
-  width: 18%;
-}
-
-thead th:nth-child(5) {
-  width: 17%;
+  width: 25%;
 }
 
 th {
