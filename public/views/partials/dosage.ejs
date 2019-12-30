@@ -3,17 +3,17 @@
   <thead>
   <tr>
       <th></th>
-      <th></th>
+      <!-- <th></th> -->
       <th>Indication</th>
-      <th>CrCl Range</th>
+      <th>CrCl Range (mL/min)</th>
       <th>Dose Guidance</th>
   </tr>
   </thead>
   <tbody>
         <% for (let i=0; i<doseRecKey.length; i++) { %>
   <tr>
-        <td><%= doseRecKey[i].drug_name %></td>
-        <td><%= doseRecKey[i].route %></td>
+        <td><%= doseRecKey[i].drug_name %>, <%= doseRecKey[i].route %></td>
+        <!-- <td><%= doseRecKey[i].route %></td> -->
         <td><%= doseRecKey[i].indication %></td>
         <td><%= doseRecKey[i].crcl_level %></td>
         <td class="dose"><%= doseRecKey[i].dose %></td>
@@ -23,7 +23,7 @@
 <tfoot> 
   <tr>
     <th>Notes</th>
-    <td class="notes" colspan="4"><%= doseRecKey[0].notes %></td>
+    <td class="notes" colspan="3"><%= doseRecKey[0].notes %></td>
   </tr>
   </tfoot>
       <% } else %>

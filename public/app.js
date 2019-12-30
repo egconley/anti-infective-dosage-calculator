@@ -1,6 +1,5 @@
 'use strict';
 
-// let indications = require('drugIndications.JSON');
 // console.log('front end indications: ', indications);
 let allDrugsWithIndications = [];
 let selectedDrugFront;
