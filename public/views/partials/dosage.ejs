@@ -6,7 +6,6 @@
       <!-- <th></th> -->
       <th>Indication</th>
       <th>CrCl Range (mL/min)</th>
-      <th>Dose Guidance</th>
   </tr>
   </thead>
   <tbody>
@@ -16,15 +15,21 @@
         <!-- <td><%= doseRecKey[i].route %></td> -->
         <td><%= doseRecKey[i].indication %></td>
         <td><%= doseRecKey[i].crcl_level %></td>
-        <td class="dose"><%= doseRecKey[i].dose %></td>
+        
   </tr>
-  <% } %>
 </tbody>
 <tfoot> 
+  <tr>
+    <th>Dose Guidance</th>
+    <td class="dose" colspan="3"><%= doseRecKey[i].dose %></td>
+  </tr>
+  <% } %>
+  <% if (doseRecKey[0].notes) { %>
   <tr>
     <th>Notes</th>
     <td class="notes" colspan="3"><%= doseRecKey[0].notes %></td>
   </tr>
+  <% } %>
   </tfoot>
       <% } else %>
       <% { %>
