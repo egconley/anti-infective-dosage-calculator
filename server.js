@@ -98,35 +98,69 @@ function handlePatientInfo(req) {
 
 // get dose
 function getDose(drug, indication) {
-  if (isNaN(creatinineClearance)) {
-    doseQuery = {
-      text: `SELECT DISTINCT
-        a.drug_name, 
-        a.route, 
-        b.crcl_level, 
-        b.indication, 
-        b.dose, 
-        a.notes
-      FROM anti_microbial_drugs a
-      LEFT JOIN hd_dosing b ON a.drug_name = b.drug_name
-      WHERE a.drug_name = $1 AND b.indication = $2
-      ORDER BY drug_name;`,
-      values: [`${drug}`, `${indication}`],
+  if (indication) {
+    if (isNaN(creatinineClearance)) {
+      doseQuery = {
+        text: `SELECT DISTINCT
+          a.drug_name, 
+          a.route, 
+          b.crcl_level, 
+          b.indication, 
+          b.dose, 
+          a.notes
+        FROM anti_microbial_drugs a
+        LEFT JOIN hd_dosing b ON a.drug_name = b.drug_name
+        WHERE a.drug_name = $1 AND b.indication like $2
+        ORDER BY drug_name;`,
+        values: [`${drug}`, `${indication}%`],
+      }
+    } else {
+      doseQuery = {
+        text: `SELECT DISTINCT
+          a.drug_name, 
+          a.route, 
+          b.crcl_level, 
+          b.indication, 
+          b.dose, 
+          a.notes
+        FROM anti_microbial_drugs a
+        LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
+        WHERE a.drug_name = $1 AND $2 > b.crcl_cutoff_low AND $2 < b.crcl_cutoff_high AND b.indication like $3
+        ORDER BY drug_name;`,
+        values: [`${drug}`, `${creatinineClearance}`, `${indication}%`],
+      }
     }
   } else {
-    doseQuery = {
-      text: `SELECT DISTINCT
-        a.drug_name, 
-        a.route, 
-        b.crcl_level, 
-        b.indication, 
-        b.dose, 
-        a.notes
-      FROM anti_microbial_drugs a
-      LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
-      WHERE a.drug_name = $1 AND $2 > b.crcl_cutoff_low AND $2 < b.crcl_cutoff_high AND b.indication like $3
-      ORDER BY drug_name;`,
-      values: [`${drug}`, `${creatinineClearance}`, `${indication}%`],
+    if (isNaN(creatinineClearance)) {
+      doseQuery = {
+        text: `SELECT DISTINCT
+          a.drug_name, 
+          a.route, 
+          b.crcl_level, 
+          b.indication, 
+          b.dose, 
+          a.notes
+        FROM anti_microbial_drugs a
+        LEFT JOIN hd_dosing b ON a.drug_name = b.drug_name
+        WHERE a.drug_name = $1
+        ORDER BY drug_name;`,
+        values: [`${drug}`],
+      }
+    } else {
+      doseQuery = {
+        text: `SELECT DISTINCT
+          a.drug_name, 
+          a.route, 
+          b.crcl_level, 
+          b.indication, 
+          b.dose, 
+          a.notes
+        FROM anti_microbial_drugs a
+        LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
+        WHERE a.drug_name = $1 AND $2 > b.crcl_cutoff_low AND $2 < b.crcl_cutoff_high
+        ORDER BY drug_name;`,
+        values: [`${drug}`, `${creatinineClearance}`],
+      }
     }
   }
 }
