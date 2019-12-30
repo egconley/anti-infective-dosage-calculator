@@ -27,10 +27,11 @@ app.get('/', homePage);
 // const constructors = require('./constructors.js'); 
 
 function homePage(req, res) {
-  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: null, CrClKey: null, doseRecKey: null });
+  res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: null, drugsWithIndicationsKey: drugsWithIndications, CrClKey: null, doseRecKey: null });
 }
 
 let allDrugNames = [];
+let drugsWithIndications = [];
 // let selectedDrug;
 let patientsArray = [];
 let doseRecArray = [];
@@ -96,7 +97,7 @@ function handlePatientInfo(req) {
 }
 
 // get dose
-function getDose(drug) {
+function getDose(drug, indication) {
   if (isNaN(creatinineClearance)) {
     doseQuery = {
       text: `SELECT DISTINCT
@@ -108,9 +109,9 @@ function getDose(drug) {
         a.notes
       FROM anti_microbial_drugs a
       LEFT JOIN hd_dosing b ON a.drug_name = b.drug_name
-      WHERE a.drug_name = $1 
+      WHERE a.drug_name = $1 AND b.indication = $2
       ORDER BY drug_name;`,
-      values: [`${drug}`],
+      values: [`${drug}`, `${indication}`],
     }
   } else {
     doseQuery = {
@@ -123,9 +124,9 @@ function getDose(drug) {
         a.notes
       FROM anti_microbial_drugs a
       LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
-      WHERE a.drug_name = $1 AND $2 > b.crcl_cutoff_low AND $2 < b.crcl_cutoff_high 
+      WHERE a.drug_name = $1 AND $2 > b.crcl_cutoff_low AND $2 < b.crcl_cutoff_high AND b.indication like $3
       ORDER BY drug_name;`,
-      values: [`${drug}`, `${creatinineClearance}`],
+      values: [`${drug}`, `${creatinineClearance}`, `${indication}%`],
     }
   }
 }
@@ -149,29 +150,33 @@ client.query(`SELECT DISTINCT drug_name
 });
 
 // list of drugs with specific indications for indication dropdown
-// client.query(`SELECT DISTINCT
-//              a.drug_name, b.indication
-//              FROM anti_microbial_drugs a
-//             LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
-//             WHERE (b.indication IS NULL)=FALSE
-//             ORDER BY drug_name;`).then(res => {
-//   const drugsWithIndications = res.rows.map(name => name.drug_name);
-// }).catch(err => {
-//   console.log(err.stack);
-// }).finally(() => {
-//   // client.end()
-// });
+client.query(`SELECT DISTINCT
+             a.drug_name, b.indication
+             FROM anti_microbial_drugs a
+            LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
+            WHERE (b.indication IS NULL)=FALSE
+            ORDER BY drug_name;`).then(res => {
+  drugsWithIndications = res.rows;
+  console.log('DRUGS WITH INDICATIONS: ', res.rows);
+}).catch(err => {
+  console.log(err.stack);
+}).finally(() => {
+  // client.end()
+});
 
 app.post('/dose', urlencodedParser, function (req, res) {
   console.log('post request successful!!', req.body);
 
   let selectedDrug = req.body.drugs;
+  let selectedIndication = req.body.indications;
+
+  console.log('selected indication BACK END: ', selectedIndication);
   console.log('req.body.drugs: ', selectedDrug);
   console.log('patient info before function: ', patientsArray);
   handlePatientInfo(req);
   calculateCrCl();
   console.log('CrCl available for dose: ', creatinineClearance);
-  getDose(selectedDrug);
+  getDose(selectedDrug, selectedIndication);
 
   doseGuidelines = client.query(doseQuery).then(databaseResult => {
 
@@ -185,7 +190,7 @@ app.post('/dose', urlencodedParser, function (req, res) {
     let doseRecStringified = JSON.stringify(doseRec);
     console.log('stringified dose rec', doseRecStringified);
 
-    res.render('pages/doseGuidance', { drugArrayKey: allDrugNames,selectedDrugKey: selectedDrug, CrClKey: creatinineClearance, doseRecKey: doseRecArray })
+    res.render('pages/doseGuidance', { drugArrayKey: allDrugNames,selectedDrugKey: selectedDrug, drugsWithIndicationsKey: drugsWithIndications, CrClKey: creatinineClearance, doseRecKey: doseRecArray })
   })
 })
 
