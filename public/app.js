@@ -27,7 +27,17 @@ function getIndications() {
     for (let i=0; i<allDrugsWithIndications.length; i++) {
       if (allDrugsWithIndications[i].drug_name === selectedDrugFront) {
         console.log('indication to append', allDrugsWithIndications[i].indication)
+
+        // $('#selectIndication').find(`<option value=${allDrugsWithIndications[i].indication}>${allDrugsWithIndications[i].indication}</option>`).remove();
+
         $('#selectIndication').append(`<option value=${allDrugsWithIndications[i].indication}>${allDrugsWithIndications[i].indication}</option>`);
+
+        // remove duplicate options
+        $("#selectIndication option").val(function(idx, val) {
+          $(this).siblings('[value="'+ val +'"]').remove();
+        });
+        
+        console.log($('#selectIndication'));
       }
     }
   });
