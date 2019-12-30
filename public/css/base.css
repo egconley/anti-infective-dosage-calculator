@@ -8,6 +8,15 @@ nav {
   font-family: 'Roboto Mono', monospace;
 }
 
+a:link {
+  text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
 #menuContainer {
   background-color: #E3E3E3;
   font-family: 'Roboto Mono', monospace;
