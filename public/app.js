@@ -26,6 +26,12 @@ function handleSelectedDrugForIndications() {
 }
 
 $('#selectIndication').css('background-color', '#F6F6F8');
+$('#selectDrug').on('change', function() {
+  $('#selectIndication').css('background-color', '#F6F6F8');
+  $('#selectIndication').empty();
+  $('#selectIndication').append(`<option value="default">(select indication)</option>`);
+  $('#selectIndication').attr('disabled', 'disabled');
+})
 
 function getIndications() {
   $('#selectIndication').removeAttr('disabled');
