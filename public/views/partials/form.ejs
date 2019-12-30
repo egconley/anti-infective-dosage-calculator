@@ -2,7 +2,7 @@
   <h3 id="selectDrugNote">1. Select an anti-infective drug</h3>
   <select id="selectDrug" name="drugs" onchange="handleSelectedDrugForIndications()">
     <% if (selectedDrugKey) { %>
-    <% console.log('selected drug value available!!', selectedDrugKey); %>
+    <% console.log('FRONT END selected drug value available!!', selectedDrugKey); %>
     <option value="selectedDrugKey"><%= selectedDrugKey %></option>
     <% } %>
     <% for(var i=0; i < drugArrayKey.length; i++) { %>
