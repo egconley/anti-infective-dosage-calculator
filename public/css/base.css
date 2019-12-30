@@ -32,4 +32,8 @@ h3 {
 h3 {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
+
+select {
+  background-color: #E3E3E3;
+}
 /* border-top: 1px solid rgba(0, 0, 0, 0.1); */
