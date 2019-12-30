@@ -72,8 +72,10 @@ function displayPatientInputForm() {
   let hdValue = $('input[name=hd]:checked').val();
   if (hdValue === 'no') {
     $everythingAfterHDRadio.css("display", "block");
+    $('button').text('Calculate CrCl / Get Dose Guidance');
   } else if (hdValue === 'yes') {
     $everythingAfterHDRadio.css("display", "none");
     $('button').css("display", "block");
+    $('button').text('Get Dose Guidance');
   }
 }
