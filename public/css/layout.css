@@ -149,30 +149,9 @@ form {
   margin-bottom: 4px;
 }
 
-#heightInput {
-  grid-column: 2 / 3;
-  grid-row: 8 / 9; 
-  border: 1px solid #E3E3E3;
-  border-radius: 3px;
-  margin-right: 8px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  margin-bottom: 4px;
-}
-#heightLabel {
-  grid-column: 1 / 2;
-  grid-row: 8 / 9; 
-  display: flex;
-  align-self: center;
-  padding-left: 8px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  margin-bottom: 4px;
-}
-
 #weightInput {
   grid-column: 2 / 3;
-  grid-row: 9 / 10; 
+  grid-row: 8 / 9; 
   border: 1px solid #E3E3E3;
   border-radius: 3px;
   margin-right: 8px;
@@ -182,7 +161,7 @@ form {
 }
 #weightLabel {
   grid-column: 1 / 2;
-  grid-row: 9 / 10; 
+  grid-row: 8 / 9; 
   display: flex;
   align-self: center;
   padding-left: 8px;
@@ -193,7 +172,7 @@ form {
 
 #creatinineInput {
   grid-column: 2 / 3;
-  grid-row: 10 / 11; 
+  grid-row: 9 / 10; 
   border: 1px solid #E3E3E3;
   border-radius: 3px;
   margin-right: 8px;
@@ -203,7 +182,7 @@ form {
 }
 #creatinineLabel {
   grid-column: 1 / 2;
-  grid-row: 10 / 11;  
+  grid-row: 9 / 10;  
   display: flex;
   align-self: center;
   padding-left: 8px;
@@ -214,7 +193,7 @@ form {
 
 button {
   grid-column: 2 / 3;
-  grid-row: 11 / 12;  
+  grid-row: 10 / 11;  
 }
 
 #result {
