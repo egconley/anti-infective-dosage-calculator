@@ -12,35 +12,48 @@ function DrugsWithIndications(drug, indication) {
 
 // Drop down menu
 function handleSelectedDrugForIndications() {
-  selectedDrugFront = $("#selectDrug option:checked").val();
-  console.log(selectedDrugFront);
-  getIndications();
-}
-
-function getIndications() {
-  $('#selectIndication').empty();
-  $('#selectIndication').append(`<option value="default">select indication</option>`);
+  selectedDrugFront = $('#selectDrug option:checked').val();
   $.get('drugIndications.json').then(data => {
     data.forEach(item => {
       new DrugsWithIndications(item.drug_name, item.indication);
     })
-    for (let i=0; i<allDrugsWithIndications.length; i++) {
-      if (allDrugsWithIndications[i].drug_name === selectedDrugFront) {
-        console.log('indication to append', allDrugsWithIndications[i].indication)
-
-        // $('#selectIndication').find(`<option value=${allDrugsWithIndications[i].indication}>${allDrugsWithIndications[i].indication}</option>`).remove();
-
-        $('#selectIndication').append(`<option value=${allDrugsWithIndications[i].indication}>${allDrugsWithIndications[i].indication}</option>`);
-
-        // remove duplicate options
-        $("#selectIndication option").val(function(idx, val) {
-          $(this).siblings('[value="'+ val +'"]').remove();
-        });
-        
-        console.log($('#selectIndication'));
-      }
+    const drug_namesWithIndications = allDrugsWithIndications.map(name => name.drug_name);
+    if (drug_namesWithIndications.includes(selectedDrugFront)) {
+      getIndications();
     }
   });
+  console.log(selectedDrugFront);
+}
+
+$('#selectIndication').css('background-color', '#F6F6F8');
+$('#selectDrug').on('change', function() {
+  $('#selectIndication').css('background-color', '#F6F6F8');
+  $('#selectIndication').empty();
+  $('#selectIndication').append(`<option value="default">(select indication)</option>`);
+  $('#selectIndication').attr('disabled', 'disabled');
+})
+
+function getIndications() {
+  $('#selectIndication').removeAttr('disabled');
+  $('#selectIndication').css('background-color', 'rgb(66, 133, 244, 0.2)');
+  $('#selectIndication').empty();
+  $('#selectIndication').append(`<option value="default">(select indication)</option>`);
+  for (let i = 0; i < allDrugsWithIndications.length; i++) {
+    if (allDrugsWithIndications[i].drug_name === selectedDrugFront) {
+      console.log('indication to append', allDrugsWithIndications[i].indication)
+
+      // $('#selectIndication').find(`<option value=${allDrugsWithIndications[i].indication}>${allDrugsWithIndications[i].indication}</option>`).remove();
+
+      $('#selectIndication').append(`<option value=${allDrugsWithIndications[i].indication}>${allDrugsWithIndications[i].indication}</option>`);
+
+      // remove duplicate options
+      $("#selectIndication option").val(function (idx, val) {
+        $(this).siblings('[value="' + val + '"]').remove();
+      });
+
+      console.log($('#selectIndication'));
+    }
+  }
 }
 
 // burger menu to X on click
@@ -51,16 +64,16 @@ function burgerToX(x) {
   $('#menuContainer li').css('padding', '3px');
 }
 
-let $everythingAfterHDRadio = $( "#hdRadio" ).nextAll();
-$everythingAfterHDRadio.css( "display", "none" );
-$('button').css( "display", "block" );
+let $everythingAfterHDRadio = $("#hdRadio").nextAll();
+$everythingAfterHDRadio.css("display", "none");
+$('button').css("display", "block");
 
 function displayPatientInputForm() {
   let hdValue = $('input[name=hd]:checked').val();
-  if (hdValue==='no') {
-    $everythingAfterHDRadio.css( "display", "block" );
-  } else if (hdValue==='yes') {
-    $everythingAfterHDRadio.css( "display", "none" );
-    $('button').css( "display", "block" );
+  if (hdValue === 'no') {
+    $everythingAfterHDRadio.css("display", "block");
+  } else if (hdValue === 'yes') {
+    $everythingAfterHDRadio.css("display", "none");
+    $('button').css("display", "block");
   }
 }
