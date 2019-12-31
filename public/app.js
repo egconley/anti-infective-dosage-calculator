@@ -31,11 +31,24 @@ $('#selectDrug').on('change', function() {
   $('#selectIndication').empty();
   $('#selectIndication').append(`<option value="default">(select indication)</option>`);
   $('#selectIndication').attr('disabled', 'disabled');
+  console.log($('#selectIndication option').val());
+})
+
+$('#selectIndication').on('change', function() {
+  if ($('#selectIndication option').val()==='default') {
+    $('#selectIndication').css('border-color', 'rgb(244,88,66)');
+    $('#selectIndication').css('background-color', 'rgb(244,88,66,0.1)');
+  } else {
+    $('#selectIndication').css('border-color', 'rgb(169, 169, 169)');
+    $('#selectIndication').css('background-color', '#E3E3E3');
+  }
 })
 
 function getIndications() {
   $('#selectIndication').removeAttr('disabled');
-  $('#selectIndication').css('background-color', 'rgb(66, 133, 244, 0.2)');
+  $('#selectIndication').css('border-color', 'rgb(244,88,66)');
+  $('#selectIndication').css('background-color', 'rgb(244,88,66,0.1)');
+  // $('#selectIndication').css('background-color', 'rgb(66, 133, 244, 0.2)');
   $('#selectIndication').empty();
   $('#selectIndication').append(`<option value="default">(select indication)</option>`);
   for (let i = 0; i < allDrugsWithIndications.length; i++) {
@@ -64,7 +77,7 @@ function burgerToX(x) {
   $('#menuContainer li').css('padding', '3px');
 }
 
-let $everythingAfterHDRadio = $("#hdRadio").nextAll();
+let $everythingAfterHDRadio = $("#hdContainer").nextAll();
 $everythingAfterHDRadio.css("display", "none");
 $('button').css("display", "block");
 
