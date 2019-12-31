@@ -1,40 +1,50 @@
 <table>
   <% if (doseRecKey) { %>
   <thead>
-  <tr>
+    <tr>
       <th></th>
       <th>Indication</th>
       <th>CrCl Range (mL/min)</th>
-  </tr>
+    </tr>
   </thead>
   <tbody>
-        <% for (let i=0; i<doseRecKey.length; i++) { %>
-  <tr>
-        <td><%= doseRecKey[i].drug_name %>, <%= doseRecKey[i].route %></td>
-        <% if (doseRecKey[i].indication) { %>
-          <td><%= doseRecKey[i].indication %></td>
-          <% } else { %>
-          <td>any</td>
-          <% } %>
-        <td><%= doseRecKey[i].crcl_level %></td>
-        
-  </tr>
-</tbody>
-<tfoot> 
-  <tr>
-    <th class="dose result">Dose:</th>
-    <td class="dose" colspan="3"><%= doseRecKey[i].dose %></td>
-  </tr>
-  <% } %>
-  <% if (doseRecKey[0].notes) { %>
-  <tr>
-    <th>Notes</th>
-    <td class="notes" colspan="3"><%= doseRecKey[0].notes %></td>
-  </tr>
-  <% } %>
-  </tfoot>
-      <% } else %>
-      <% { %>
-        <% console.log(`doseRecKey = ${doseRecKey}`) %>
+    <tr>
+      <td><%= doseRecKey[0].drug_name %>, <%= doseRecKey[0].route %></td>
+      <% if (doseRecKey[0].indication) { %>
+      <td><%= doseRecKey[0].indication %></td>
+      <% } else { %>
+      <td>any</td>
       <% } %>
+      <td><%= doseRecKey[0].crcl_level %></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <% for (let i=0; i<doseRecKey.length; i++) { %>
+    <tr>
+      <% if (i===0) { %>
+      <th class="dose result">Dose:</th>
+      <td class="dose" colspan="3"><%= doseRecKey[i].dose %></td>
+      <% } else { %>
+    <tr>
+      <th></th>
+      <th class="dose result" colspan="3">or</th>
+    </tr>
+    <tr>
+      <th></th>
+      <td class="dose" colspan="3"><%= doseRecKey[i].dose %></td>
+    </tr>
+    <% } %>
+    </tr>
+    <% } %>
+    <% if (doseRecKey[0].notes) { %>
+    <tr>
+      <th>Notes</th>
+      <td class="notes" colspan="3"><%= doseRecKey[0].notes %></td>
+    </tr>
+    <% } %>
+  </tfoot>
+  <% } else %>
+  <% { %>
+  <% console.log(`doseRecKey = ${doseRecKey}`) %>
+  <% } %>
 </table>
