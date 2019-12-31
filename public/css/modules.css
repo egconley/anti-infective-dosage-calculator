@@ -19,6 +19,10 @@ select {
   margin-right: 8px;
 }
 
+#hdLabel {
+  font-weight: bold;
+}
+
 button {
   font-size: 16px;
   background-color: #4285F4;
@@ -98,4 +102,13 @@ td {
 
 table {
   background-color: #F6F6F8;
+}
+
+.numbers {
+  color: #4285F4;
+  padding-right: 8px;
+  /* font-weight: 900; */
+  /* font-size: 150%; */
+  /* line-height: 45%; */
+  /* padding: 8px; */
 }

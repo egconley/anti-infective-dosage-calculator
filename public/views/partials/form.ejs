@@ -1,5 +1,5 @@
 <form action="/dose" method="POST">
-  <h3 id="selectDrugNote">1. Select an anti-infective drug</h3>
+  <h3 id="selectDrugNote"><span class="numbers">1</span>Select an anti-infective drug</h3>
   <select id="selectDrug" name="drugs" onchange="handleSelectedDrugForIndications()">
     <% if (selectedDrugKey) { %>
     <% console.log('FRONT END selected drug value available!!', selectedDrugKey); %>
@@ -15,12 +15,15 @@
     <option value=""></option>
   </select>
 
-  <label id="hdLabel">Hemodialysis</label>
-  <div id="hdRadio" onchange="displayPatientInputForm()">
-    <input type="radio" name="hd" value="yes" id="hdInput">yes
-    <input type="radio" name="hd" value="no" id="hdInput">no
-  </div>
-  <h3 id="calculateNote">2. Calculate creatinine clearance using the Cockcroft-Gault equation</h3>
+  <h3 id="hdContainer">
+    <label id="hdLabel"><span class="numbers">2</span>Hemodialysis</label>
+    <div id="hdRadio" onchange="displayPatientInputForm()">
+      <input type="radio" name="hd" value="yes" id="hdInput">yes
+      <input type="radio" name="hd" value="no" id="hdInput">no
+    </div>
+  </h3>
+  
+  <h3 id="calculateNote"><span class="numbers">3</span>Calculate creatinine clearance (Cockcroft-Gault)</h3>
 
   <label id="sexLabel">Sex</label>
   <div id="sexRadio">
