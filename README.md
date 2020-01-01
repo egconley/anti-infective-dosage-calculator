@@ -6,6 +6,8 @@ App that calculates creatinine clearance and renders the corresponding UW Medici
 
 UW Medicine Renal Dosing Guidelines[link](https://occam.uwmedicine.org/antibiotic-reference-kit/uw-medicine-renal-dosing-guidelines/)
 
+NIH Antiretroviral Dosing Recommendations in Patients with Renal or Hepatic Insufficiency [link](https://aidsinfo.nih.gov/guidelines/htmltables/1/7257)
+
 ### Cockcroft-Gault Equation
 Creatinine Clearance = Sex * ((140 - Age) / (Serumcreatinine)) * (Estimatedleanbodyweight / 72)
 
