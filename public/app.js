@@ -36,10 +36,13 @@ $('#selectDrug').on('change', function () {
 })
 
 $('#selectIndication').on('change', function () {
+  console.log('INDICATION VALUE CHANGED', $('#selectIndication option').val());
   if ($('#selectIndication option').val() === 'default') {
-    $('#selectIndication').css('border-color', 'rgb(244,88,66)');
-    $('#selectIndication').css('background-color', 'rgb(244,88,66,0.1)');
+    console.log('if clause entered.');
+    // $('#selectIndication').css('border-color', 'rgb(244,88,66)');
+    // $('#selectIndication').css('background-color', 'rgb(244,88,66,0.1)');
   } else {
+    console.log('else clause entered.');
     $('#selectIndication').css('border-color', 'rgb(169, 169, 169)');
     $('#selectIndication').css('background-color', '#E3E3E3');
   }
@@ -47,8 +50,8 @@ $('#selectIndication').on('change', function () {
 
 function getIndications() {
   $('#selectIndication').removeAttr('disabled');
-  $('#selectIndication').css('border-color', 'rgb(244,88,66)');
-  $('#selectIndication').css('background-color', 'rgb(244,88,66,0.1)');
+  // $('#selectIndication').css('border-color', 'rgb(244,88,66)');
+  // $('#selectIndication').css('background-color', 'rgb(244,88,66,0.1)');
   // $('#selectIndication').css('background-color', 'rgb(66, 133, 244, 0.2)');
   $('#selectIndication').empty();
   $('#selectIndication').append(`<option value="default">(select indication)</option>`);
