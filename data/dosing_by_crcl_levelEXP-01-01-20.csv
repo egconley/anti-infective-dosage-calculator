@@ -1,0 +1,242 @@
+drug_name,crcl_level,indication,dose,crcl_cutoff_high,crcl_cutoff_low,drug_name_short
+Vancomycin,60 – 100,critically ill,loading dose based on weight followed by 15-20mg/kg q12h,100,60,
+Lamivudine (3TC),30 – 50,,1150mg daily,50,30,Lamivudine
+Lamivudine (3TC),15 – 30,,150mg first dose; then 100mg daily,30,15,Lamivudine
+Descovy (FTC/TAF) 200/25 mg,> 30,,1 tablet daily,2000,30,Descovy
+Lamivudine (3TC),> 50,,150mg q12h or 300mg daily,2000,50,Lamivudine
+Ceftriaxone,all CrCl values,SBP / osteo,2g q24h,2000,0,
+Ampicillin/Sulbactam,<10,,1.5 – 3g q24h,10,0,
+Zidovudine (AZT),<15,,300mg daily,15,0,AZT
+Combivir (3TC/AZT) 150/300 mg,<50,,Not recommended. Consider use individual components and adjust for CrCl.,50,0,Combivir
+Descovy (FTC/TAF) 200/25 mg,<30,,not recommended,30,0,Descovy
+Lamivudine (3TC),<15,,150mg first dose; then 50mg daily,15,0,Lamivudine
+Ceftazidime-Avibactam,<5,,940mg q48h,5,0,
+Tenofovir disoproxil (TDF),30 – 50,,300mg q48h,50,30,TDF
+Tenofovir disoproxil (TDF),10 – 30,,300mg twice weekly (q72-96h),30,10,TDF
+Cefepime,30 – 60,neutropenic fever / serious infection,1 – 2g q12–24h,60,30,
+Amoxicillin/Clavulanate,10 – 30,,250 - 500mg q12h,30,10,
+Colistin - NOT for cystic fibrosis,<20,,150mg q48h,20,0,
+Dalfopristin/Quinupristin,all CrCl values,,7.5mg/kg q8–12h,2000,0,
+Colistin - for Cystic Fibrosis,> 50,mild-moderate infection,75mg q12,2000,50,
+Aztreonam,> 30,cystic fibrosis,2g q6h,2000,30,
+Meropenem,> 50,neutropenic fever or serious infection,1 – 2g q8h,2000,50,
+Tenofovir disoproxil (TDF),> 50,,300mg daily,2000,50,TDF
+Epzicom (ABC/3TC) 600/300 mg,> 50,,1 tablet daily,2000,50,Epzicom
+Tenofovir alafenamide (TAF),> 15,,25mg daily,2000,15,TAF
+Dalbavancin,<30,acute bacterial skin and skin structure infection,1125mg once or 750mg then 375mg 7 days later,30,0,
+Ceftolozane-tazobactam,<10,,loading dose 1.5 g x 1; followed by maintenance dose 300mg q8h,10,0,
+Rifampin,<10,mycobacterial infection or prosthetic joint infection,600mg q24h; if hepatic failure and CrCl<10 discuss w/ pharmacy,10,0,
+Daptomycin,<30,MSSA bacteremia,6 – 8mg/kg q48h,30,0,
+Colistin - for Cystic Fibrosis,< 20,severe infection,150mg q48h,20,0,
+Oseltamivir,30 – 60,treatment,30mg q12h,60,30,
+Oseltamivir,30 – 60,prophylaxis,30mg q24h,60,30,
+Levofloxacin,20 – 50,cystitis,500mg x1; 250mg q24h on day 2,50,20,
+Emtricitabine (FTC),30 – 50,,capsule - 200mg q48h; solution - 120mg Q24h,50,30,FTC
+Aztreonam,10 – 30,any,2g x 1; 0.5 – 1g q8h,30,10,
+Ampicillin/Sulbactam,10 – 30,,1.5 – 3g q12h,30,10,
+Ampicillin/Sulbactam,30 – 50,,1.5 – 3g q8h,50,30,
+Amoxicillin,10 – 30,,250 – 1000mg q12h,30,10,
+Efavirenz (EFV),all CrCl values,,200mg q12h,2000,0,EFV
+Nevirapine (NVP),> 15,,initial dosing: 200mg daily; maintenance: 200mg q12h,2000,15,NVP
+Atazanavir (ATV),all CrCl values,,400mg daily; 300mg daily (w/ ritonavir 100mg),2000,0,ATV
+Isoniazid,all CrCl values,,300mg q24h,2000,0,
+Levofloxacin,all CrCl values,pyelonephritis,do not use,2000,0,
+Linezolid,all CrCl values,,600mg q12h,2000,0,
+Minocycline,all CrCl values,,200mg x 1; then 100mg q12,2000,0,
+Moxifloxacin,all CrCl values,,400mg daily,2000,0,
+Ampicillin/Sulbactam,> 50,,1.5 – 3g q6h,2000,50,
+Azithromycin,all CrCl values,,500mg x1day; 250 – 500mg q24h,2000,0,
+Levofloxacin,> 50,cystitis,250 – 500mg q24h,2000,50,
+Daptomycin,> 30,MRSA bacteremia,8 – 10mg/kg q24h,2000,30,
+Aztreonam,> 30,NOT cystic fibrosis or neutropenic fever,2g q6-8h,2000,30,
+Ampicillin,> 50,,1 – 2g q4–6h,2000,50,
+Nitrofurantoin,> 30,cystitis,100mg BID,2000,30,
+Nitrofurantoin,all CrCl values,pyelonephritis,do not use,2000,0,
+Emtricitabine (FTC),> 50,,capsule - 200mg daily; solution - 240mg daily,2000,50,FTC
+Aminoglycosides,all CrCl values,,Consult pharmacy for dosing recommendations for amikacin; gentamicin; tobramycin; or streptomycin.,2000,0,
+Aztreonam,> 30,neutropenic fever,2g q8h,2000,30,
+Flucytosine,> 40,,25mg/kg q6h,2000,40,Flucytosine
+Nevirapine (NVP),<15,,not studied,15,0,NVP
+Levofloxacin,<20,cystitis,500mg x1; 250mg q48h on day 3,20,0,
+Ampicillin,<10,,1 – 2g q12–24h,10,0,
+Aztreonam,<10,any,2g x 1 then 500mg q8h,10,0,
+Nitrofurantoin,<30,cystitis,Do not use due to risk of ineffectiveness and concern for toxicity.,30,0,
+Oseltamivir,<30,prophylaxis,30mg q48h,30,0,
+Oseltamivir,<30,treatment,30mg q24h,30,0,
+Amoxicillin,<10,,250 – 1000mg q24h,10,0,
+Vancomycin,40 – 60,critically ill,loading dose based on weight followed by 15-20mg/kg q12-24h,60,40,
+Vancomycin,40 – 60,NOT critically ill,loading dose based on weight followed by 15-20mg/kg q12-24h,60,40,
+Vancomycin,15 – 40,NOT critically ill,loading dose based on weight followed by 15-20mg/kg q24-48h,40,15,
+Vancomycin,15 – 40,critically ill,loading dose based on weight followed by 15-20mg/kg q24-48h,40,15,
+Meropenem,10 – 25,cystic fibrosis / meningitis,1g q12h,25,10,
+Imipenem/Cilastatin,10 – 50,,500mg q8–12h,50,10,
+Ciprofloxacin,<10,,IV: 200mg q12h,10,0,
+Ciprofloxacin,<10,,PO: 250mg q12h,10,0,
+Idalizumab; IV (IBA),<50,,not studied,50,0,IBA
+Ertapenem,<30,,500mg q24h,30,0,
+Ceftazidime,<5,neutropenic fever / serious infection / pseudomonas aeruginosa,1g q48h,5,0,
+Ceftaroline,<15,endocarditis,300mg q12h,15,0,
+Colistin - for Cystic Fibrosis,20 – 50,severe infection,150mg q24h,50,20,
+Ciprofloxacin,10 – 30,,IV: 10 – 30: 400mg q12h,30,10,
+Ciprofloxacin,10 – 30,,PO: 10 – 30: 250 – 500mg q12h,30,10,
+Cephalexin,10 – 50,,250 – 500mg q12h,50,10,
+Ceftazidime-Avibactam,15 – 30,,940mg q12h,30,15,
+Ceftazidime,15 – 30,neutropenic fever / serious infection / pseudomonas aeruginosa,2g q24h,30,15,
+Ceftaroline,30 – 50,NOT endocarditis,400mg q12h,50,30,
+Daptomycin,> 30,VRE bacteremia,8 – 12mg/kg q24h,2000,30,
+Ethambutol,> 30,,15 – 25mg/kg q24h,2000,30,
+Fidaxomicin,all CrCl values,,200mg  q12h,2000,0,
+Delstrigo (DOR/3TC/TDF) 100/300/300 mg,> 50,,1 tablet daily,2000,50,
+Cephalexin,> 50,,250 – 500mg q6h,2000,50,
+Ciprofloxacin,> 30,,IV: 400mg q8-12h,2000,30,
+Idalizumab; IV (IBA),> 50,,load: 2000mg; maintenance: 800mg Q2 weeks,2000,50,IBA
+Ceftaroline,<15,NOT endocarditis,200mg q12h,15,0,
+Oseltamivir,> 60,prophylaxis,75mg q24h,2000,60,
+Isavuconazonium sulfate,all CrCl values,,initial: 372mg q8h x 6 doses; maintenance: 372mg q24h,2000,0,Isavuconazonium sulfate
+Metronidazole,all CrCl values,,500mg q8h,2000,0,Metronidazole
+Amoxicillin,> 30,,250 – 1000mg q8h,2000,30,
+Amoxicillin/Clavulanate,> 30,,875mg q12h,2000,30,
+Ceftaroline,> 50,endocarditis,600mg q8h,2000,50,
+Ceftaroline,> 50,NOT endocarditis,600mg q12h,2000,50,
+Ceftaroline,15 – 30,endocarditis,300mg q8h,30,15,
+Cefpodoxime,10 – 30,,200 – 400mg q24h,30,10,
+Cefepime,10 – 30,neutropenic fever / serious infection,0.5 – 2g q24h,30,10,
+Cefazolin,10 – 30,,2g q12h,30,10,
+Micafungin,all CrCl values,esophageal candidiasis,150mg q24h,2000,0,Micafungin
+Trimethoprim/Sulfamethoxazole,> 30,treatment of PJP or stenotrophomonas,15mg TMP/kg/day divided in q8h doses,2000,30,
+Cefazolin,> 30,,2g q8h,2000,30,
+Cefepime,> 60,neutropenic fever / serious infection,2g q8h,2000,60,
+Cefpodoxime,> 30,,200 – 400mg q12h,2000,30,
+Dapsone,all CrCl values,,100mg daily,2000,0,
+Biktarvy (BIC/FTC/TAF) 50/200/25 mg,> 30,,1 tablet daily,2000,30,Biktarvy
+Dovato (DTG/3TC) 50/300 mg,> 50,,1 tablet daily,2000,50,Dovato
+Genvoya (EVG/c/FTC/TAF) 150/150/200/10 mg,> 30,,1 tablet daily,2000,30,Genvoya
+Juluca (DTG/RPV) 25/50 mg,all CrCl values,,1 tablet daily,2000,0,Juluca
+Odefsey (RPV/FTC/TAF) 25/200/25 mg,> 30,,1 tablet daily,2000,30,Odefsey
+Symtuza (DRV/c/FTC/TAF) 800/150/200/10 mg,> 30,,1 tablet daily,2000,30,Symtuza
+Lopinavir/ritonavir (LPV/r),all CrCl values,,400/100mg q12h; 800/200mg daily,2000,0,LPV/r
+Prezcobix (DRV/c) 800/150 mg,> 70,,1 tablet daily,2000,70,DRV/c
+Micafungin,all CrCl values,prophylaxis,50mg q24h,2000,0,Micafungin
+Micafungin,all CrCl values,candidemia,100mg q24h,2000,0,Micafungin
+Fosamprenavir (FPV),all CrCl values,,1400mg q12h (without ritonavir); 1400mg daily (w/ ritonavir 100 – 200mg); 700mg q12h (w/ ritonavir 100mg q12h),2000,0,FPV
+Cefazolin,<10,,1g q24h,10,0,
+Cefepime,<10,neutropenic fever / serious infection,1g q24h,10,0,
+Cefpodoxime,<10,,200 – 400mg q24h,10,0,
+Biktarvy (BIC/FTC/TAF) 50/200/25 mg,<30,,not recommended,30,0,Biktarvy
+Complera (RPV/FTC/TDF) 25/200/300 mg,<50,,Not recommended. Consider use individual components and adjust for CrCl..,50,0,Complera
+Dovato (DTG/3TC) 50/300 mg,<50,,Not recommended. Consider use individual components and adjust for CrCl..,50,0,Dovato
+Genvoya (EVG/c/FTC/TAF) 150/150/200/10 mg,<30,,not recommended,30,0,Genvoya
+Odefsey (RPV/FTC/TAF) 25/200/25 mg,<30,,1 tablet daily,30,0,Odefsey
+Symtuza (DRV/c/FTC/TAF) 800/150/200/10 mg,<30,,Not recommended. Consider use individual components and adjust for CrCl..,30,0,Symtuza
+Prezcobix (DRV/c) 800/150 mg,<70,,not recommended if used with TDF,70,0,DRV/c
+Daptomycin,<30,UTI,6mg/kg q48h,30,0,
+Vancomycin,60 – 100,NOT critically ill,loading dose based on weight followed by 15-20mg/kg q12h,100,60,
+Penicillin G Potassium,10 – 50,endocarditis / neurosyphillis / NSTI,2 – 5 mU q4h OR 12 – 30 mU/over 24 hrs,50,10,
+Meropenem,25 – 50,neutropenic fever or serious infection,1 – 2g q12h,50,25,
+Meropenem,25 – 50,cystic fibrosis / meningitis,2g q12h,50,25,
+Meropenem,10 – 25,neutropenic fever or serious infection,500 – 1000mg q12h,25,10,
+Flucytosine,10 – 20,,25mg/kg q24h,20,10,Flucytosine
+Colistin - for Cystic Fibrosis,20 – 50,mild-moderate infection,75mg q24h,50,20,
+Ceftazidime,30 – 50,NOT neutropenic fever / serious infection / pseudomonas aeruginosa,1g q12h,50,30,
+Ceftaroline,15 – 30,NOT endocarditis,300mg q12h,30,15,
+Ceftaroline,30 – 50,endocarditis,400mg q8h,50,30,
+Ampicillin,10 – 50,,1 – 2g q6–12h,50,10,
+Nafcillin,all CrCl values,,2g q4h or 12g daily as a continuous infusion,2000,0,
+Maraviroc (MVC),> 30,,300mg q12h,2000,30,MVC
+Raltegravir (RAL),all CrCl values,,400mg q12h,2000,0,RAL
+Enfuvirtide; SC (ENF),> 30,,90mg q12h,2000,30,ENF
+Meropenem,> 50,cystic fibrosis / meningitis,2g q8h,2000,50,
+Fosfomycin,> 40,cystitis,3g x1,2000,40,
+Fosfomycin,all CrCl values,pyelonephritis,do not use,2000,0,
+Oseltamivir - for pregnant women (or within two weeks of delivery),> 50,treatment,75mg q8h,2000,50,
+Doravirine (DOR),all CrCl values,,100mg daily,2000,0,DOR
+Doxycycline,all CrCl values,,100mg q12h,2000,0,
+Abacavir (ABC),all CrCl values,,300mg q12h; 600mg daily,2000,0,ABC
+Penicillin G Potassium,<10,endocarditis / neurosyphillis / NSTI,2 mU q4-6h OR 8 - 12 mU over 24 hrs,10,0,
+Enfuvirtide; SC (ENF),<30,,not studied; however may consider no dose adjustment,30,0,ENF
+Imipenem/Cilastatin,<10,,250 – 500mg q12h,10,0,
+Maraviroc (MVC),<30,,150 – 300mg q12h - CrCl<30 and on potent CYP3A4 inhibitor: not recommended,30,0,MVC
+Atripla (EFV/FTC/TDF) 600/200/300 mg,<50,,Not recommended. Consider use individual components and adjust for CrCl..,50,0,Atripla
+Epzicom (ABC/3TC) 600/300 mg,<50,,Not recommended. Consider use individual components and adjust 3TC for CrCl,50,0,Epzicom
+Ceftolozane-tazobactam,30 – 50,,1.5g q8h,50,30,
+Ceftolozane-tazobactam,15 – 30,,750mg q8h,30,15,
+Ceftazidime-Avibactam,5 – 15,,940mg q24h,15,5,
+Ceftazidime,30 – 50,neutropenic fever / serious infection / pseudomonas aeruginosa,2g q12h,50,30,
+Colistin - NOT for cystic fibrosis,20 – 50,,150mg q24h,50,20,
+Daptomycin,> 30,MSSA bacteremia,6 – 8mg/kg q24h,2000,30,
+Dalbavancin,> 30,acute bacterial skin and skin structure infection,1500mg once or 1000mg then 500mg 7 days later,2000,30,
+Bictegravir (BIC),> 30,,50mg daily,2000,30,BIC
+Ertapenem,> 30,,1g q24h,2000,30,
+Cimduo (3TC/TDF) 300/300 mg,> 50,,1 tablet daily,2000,50,Cimduo
+Ceftazidime-Avibactam,> 50,,2.5g q8h infused over 2 hours,2000,50,
+Zidovudine (AZT),> 15,,300mg q12h,2000,15,AZT
+Daptomycin,> 30,UTI,6mg/kg q24h,2000,30,
+Ceftolozane-tazobactam,> 50,,3g q8h infused over 1 hour,2000,50,
+Elvitegravir (EVG),all CrCl values,,85 - 150mg daily,2000,0,EVG
+Daptomycin,<30,other,6 – 12mg/kg q48h,30,0,
+Daptomycin,<30,VRE bacteremia,8 – 12mg/kg q48h,30,0,
+Rifampin,<10,endocarditis,300mg q8h; if hepatic failure and CrCl<10 discuss w/ pharmacy,10,0,
+Bictegravir (BIC),<30,,not recommended.,30,0,BIC
+Ethambutol,<30,,15 – 25mg/kg TIW,30,0,
+Flucytosine,20 – 40,,25mg/kg q12h,40,20,Flucytosine
+Emtricitabine (FTC),15 – 30,,capsule - 200mg Q72h; solution - 80mg Q24h,30,15,FTC
+Ceftazidime-Avibactam,30 – 50,,1.25g q8h,50,30,
+Ceftazidime,5 – 15,neutropenic fever / serious infection / pseudomonas aeruginosa,1g q24h,15,5,
+Clindamycin,all CrCl values,,PO: 300 – 450mg q8h,2000,0,
+Vancomycin - for C.difficile infections,all CrCl values,C. difficile infections,125mg  q6h,2000,0,
+Daptomycin,> 30,other,6 – 12mg/kg q24h,2000,30,
+Oseltamivir,> 60,treatment,75mg q12h,2000,60,
+Oseltamivir - for pregnant women (or within two weeks of delivery),> 50,prophylaxis,75mg q12h,2000,50,
+Oseltamivir - for pregnant women (or within two weeks of delivery),<50,prophylaxis,Contact Maternal Fetal Medicine for dosing recommendations in patients with impaired renal function or patients who are on hemodialysis.,50,0,
+Oseltamivir - for pregnant women (or within two weeks of delivery),<50,treatment,Contact Maternal Fetal Medicine for dosing recommendations in patients with impaired renal function or patients who are on hemodialysis.,50,0,
+Tenofovir alafenamide (TAF),<15,,not recommended,15,0,TAF
+Fosfomycin,<40,cystitis,do not use due to risk of ineffectiveness,40,0,
+Daptomycin,<30,MRSA bacteremia,8 – 10mg/kg q48h,30,0,
+Meropenem,<10,neutropenic fever or serious infection,500-1000mg q24h,10,0,
+Flucytosine,<10,,25mg/kg q48h,10,0,Flucytosine
+Rifampin,> 50,endocarditis,300mg q8h,2000,50,
+Rilpivirine (RPV),all CrCl values,,25mg daily,2000,0,RPV
+Triumeq (DTG/ABC/3TC) 50/600/300 mg,> 50,,1 tablet daily,2000,50,Triumeq
+Delstrigo (DOR/3TC/TDF) 100/300/300 mg,<50,,Not recommended. Consider use individual components and adjust for CrCl.,50,0,
+Etravirine (ETR),all CrCl values,,200mg q12h,2000,0,ETR
+Colistin - for Cystic Fibrosis,> 50,severe infection,150mg q12h,2000,50,
+Clindamycin,all CrCl values,,IV: 600 – 900mg q8h,2000,0,
+Triumeq (DTG/ABC/3TC) 50/600/300 mg,<50,,Not recommended. Consider use individual components and adjust 3TC for CrCl,50,0,Triumeq
+Colistin - NOT for cystic fibrosis,> 50,,150mg q12h,2000,50,
+Meropenem,<10,cystic fibrosis / meningitis,1g q24h,10,0,
+Ceftazidime,<5,NOT neutropenic fever / serious infection / pseudomonas aeruginosa,500mg q48h,5,0,
+Vancomycin,<15,critically ill,loading dose then daily vancomycin levels and re-dose if <15 mcg/mL,15,0,
+Vancomycin,<15,NOT critically ill,loading dose then daily vancomycin levels and re-dose if <15 mcg/mL,15,0,
+Ceftriaxone,all CrCl values,CAP / pyelo,1g q24h,2000,0,
+Ceftriaxone,all CrCl values,endocarditis,see IDSA guidelines,2000,0,
+Ceftriaxone,all CrCl values,meningitis,2g q12h,2000,0,
+Imipenem/Cilastatin,> 50,,500mg q6h,2000,50,
+Ceftazidime,> 50,neutropenic fever / serious infection / pseudomonas aeruginosa,2g q8h,2000,50,
+Ceftazidime,> 50,NOT neutropenic fever / serious infection / pseudomonas aeruginosa,1g q8h,2000,50,
+Vancomycin,> 100,NOT critically ill,loading dose based on weight followed by 15-20mg/kg q8-12h; weight based loading dose for NOT critically ill: >100 kg = 2g; 70-99 kg = 1.5g; 50-69 kg = 1g; <50 kg = 0.75g,2000,100,
+Vancomycin,> 100,critically ill,loading dose based on weight followed by 15-20mg/kg q8-12h; weight based loading dose for CRITICALLY ILL: >100 kg = 2.5g; 70-99 kg = 2g; 50-69 kg = 1.5g; <50 kg = 1g,2000,100,
+Cimduo (3TC/TDF) 300/300 mg,<50,,Not recommended. Consider use individual components and adjust for CrCl.,50,0,Cimduo
+Pyrazinamide,<30,,25 – 35mg/kg –TIW,30,0,
+Trimethoprim/Sulfamethoxazole,30 – 50,PJP prophylaxis,1 SS tab q24h,50,30,
+Rifampin,10 – 50,endocarditis,300mg q8h,50,10,
+Rifampin,10 – 50,mycobacterial infection or prosthetic joint infection,600mg q24h,50,10,
+Ceftazidime,15 – 30,NOT neutropenic fever / serious infection / pseudomonas aeruginosa,1g q24h,30,15,
+Ceftazidime,5 – 15,NOT neutropenic fever / serious infection / pseudomonas aeruginosa,500mg q24h,15,5,
+Piperacillin/Tazobactam,<20,,3.375g q12h infused over 4 hours,20,0,
+Atripla (EFV/FTC/TDF) 600/200/300 mg,> 50,,1 tablet daily,2000,50,Atripla
+Penicillin G Potassium,> 50,endocarditis / neurosyphillis / NSTI,2 – 5 mU q4h OR 12 – 30 mU/over 24 hrs,2000,50,
+Polymixin B,all CrCl values,systemic infections due to multi-drug resistant organisms,loading dose of 3mg/kg then 12 hours later start maintenance dose of 1.5mg/kg q12h,2000,0,
+Pyrazinamide,> 30,,20 – 25mg/kg q24h (max 2g/dose),2000,30,
+Rifabutin,all CrCl values,,300mg q24h,2000,0,
+Piperacillin/Tazobactam,> 20,,4.5g X 1; then 4 hr later start 3.375g q8h infused over 4 hours,2000,20,
+Rifampin,> 50,mycobacterial infection or prosthetic joint infection,600mg q24h,2000,50,
+Tigecycline,all CrCl values,,100mg x 1; 50mg q12h,2000,0,
+Ciprofloxacin,> 30,,PO: 250 – 750mg q12h,2000,30,
+Combivir (3TC/AZT) 150/300 mg,> 50,,1 tablet q12h,2000,50,Combivir
+Colistin - for Cystic Fibrosis,< 20,mild-moderate infection,75mg q48h,20,0,
+Amoxicillin/Clavulanate,<10,,500mg q24h (500mg SD),10,0,
+Emtricitabine (FTC),<15,,capsule - 200mg q96h; solution - 60mg daily,15,0,FTC
+Cephalexin,<10,,250mg q12h,10,0,
+Trimethoprim/Sulfamethoxazole,<10,treatment of PJP or stenotrophomonas,5mg TMP/kg q24h,10,0,
+Trimethoprim/Sulfamethoxazole,> 50,PJP prophylaxis,1 SS tab q24h or 1 DS tab q24h,2000,50,
+Trimethoprim/Sulfamethoxazole,<30,PJP prophylaxis,1 SS tab q48h,30,0,
