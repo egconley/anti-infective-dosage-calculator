@@ -25,10 +25,6 @@
   { "drug_name": "Ceftriaxone", "indication": "endocarditis" },
   { "drug_name": "Ceftriaxone", "indication": "meningitis" },
   {
-    "drug_name": "Colistin - NOT for cystic fibrosis",
-    "indication": "any"
-  },
-  {
     "drug_name": "Colistin - for Cystic Fibrosis",
     "indication": "mild-moderate infection"
   },
@@ -60,7 +56,6 @@
   { "drug_name": "Micafungin", "indication": "candidemia" },
   { "drug_name": "Micafungin", "indication": "esophageal candidiasis" },
   { "drug_name": "Micafungin", "indication": "prophylaxis" },
-  { "drug_name": "Nafcillin", "indication": "any" },
   { "drug_name": "Nitrofurantoin", "indication": "cystitis" },
   { "drug_name": "Nitrofurantoin", "indication": "pyelonephritis" },
   { "drug_name": "Oseltamivir", "indication": "prophylaxis" },
@@ -77,7 +72,6 @@
     "drug_name": "Penicillin G Potassium",
     "indication": "endocarditis / neurosyphillis / NSTI"
   },
-  { "drug_name": "Piperacillin/Tazobactam", "indication": "any" },
   {
     "drug_name": "Polymixin B",
     "indication": "systemic infections due to multi-drug resistant organisms"
