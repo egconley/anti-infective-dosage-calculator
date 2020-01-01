@@ -57,12 +57,7 @@ function getIndications() {
     if (allDrugsWithIndications[i].drug_name === selectedDrugFront) {
       console.log('indication to append', allDrugsWithIndications[i].indication)
 
-      // $('#selectIndication').find(`<option value=${allDrugsWithIndications[i].indication}>${allDrugsWithIndications[i].indication}</option>`).remove();
-      if (allDrugsWithIndications[i].indication !== allDrugsWithIndications[i - 1].indication
-        && allDrugsWithIndications[i].indication !== allDrugsWithIndications[i - 2].indication
-        && allDrugsWithIndications[i].indication !== allDrugsWithIndications[i - 3].indication) {
-        $('#selectIndication').append(`<option value=${allDrugsWithIndications[i].indication}>${allDrugsWithIndications[i].indication}</option>`);
-      }
+      $('#selectIndication').append(`<option value=${allDrugsWithIndications[i].indication}>${allDrugsWithIndications[i].indication}</option>`);
 
       //source: https://stackoverflow.com/questions/35208170/removing-duplicates-from-a-select-dropdown-using-javascript-or-jquery
       var optionValues = [];
