@@ -98,6 +98,7 @@ function handlePatientInfo(req) {
 
 // get dose
 function getDose(drug, indication) {
+  console.log('INDICATION: ', indication);
   if (indication) {
     if (isNaN(creatinineClearance)) {
       doseQuery = {
@@ -163,6 +164,7 @@ function getDose(drug, indication) {
       }
     }
   }
+  console.log('DOSE QUERY: ', doseQuery);
 }
 
 // populate dropdown menu with drug names

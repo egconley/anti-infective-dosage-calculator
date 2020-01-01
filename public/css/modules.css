@@ -69,7 +69,7 @@ thead th:nth-child(3) {
 th {
   font-weight: bold;
   font-size: 105%;
-  vertical-align: bottom;
+  /* vertical-align: bottom; */
 }
 
 .dose {
@@ -80,7 +80,8 @@ th {
   vertical-align: middle;
   text-align: center;
   background-color: rgba(66, 133, 244, 0.1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.5); */
+  /* border-top: 1px solid rgba(0, 0, 0, 0.5); */
 }
 
 .result {
@@ -97,8 +98,8 @@ th {
 th, td {
   padding: 10px;
   text-align: left;
-  border-top: 1px solid rgba(0, 0, 0, 0);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  /* border-top: 1px solid rgba(0, 0, 0, 0.5); */
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
   line-height: 130%;
 }
 
@@ -108,8 +109,8 @@ td {
 }
 
 th {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.5); */
+  /* border-top: 1px solid rgba(0, 0, 0, 0.5); */
 }
 
 table {

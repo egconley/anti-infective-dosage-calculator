@@ -27,6 +27,7 @@ function handleSelectedDrugForIndications() {
 
 $('#selectIndication').css('background-color', '#F6F6F8');
 $('#selectDrug').on('change', function() {
+  $('#selectIndication').css('border-color', 'rgb(169, 169, 169)');
   $('#selectIndication').css('background-color', '#F6F6F8');
   $('#selectIndication').empty();
   $('#selectIndication').append(`<option value="default">(select indication)</option>`);
@@ -51,20 +52,19 @@ function getIndications() {
   // $('#selectIndication').css('background-color', 'rgb(66, 133, 244, 0.2)');
   $('#selectIndication').empty();
   $('#selectIndication').append(`<option value="default">(select indication)</option>`);
+  console.log('allDrugsWithIndications in getIndications(): ', allDrugsWithIndications);
   for (let i = 0; i < allDrugsWithIndications.length; i++) {
     if (allDrugsWithIndications[i].drug_name === selectedDrugFront) {
       console.log('indication to append', allDrugsWithIndications[i].indication)
 
       // $('#selectIndication').find(`<option value=${allDrugsWithIndications[i].indication}>${allDrugsWithIndications[i].indication}</option>`).remove();
+      if (allDrugsWithIndications[i].indication !== allDrugsWithIndications[i - 1].indication 
+        && allDrugsWithIndications[i].indication !== allDrugsWithIndications[i-2].indication 
+        && allDrugsWithIndications[i].indication !== allDrugsWithIndications[i-3].indication) {
+        $('#selectIndication').append(`<option value=${allDrugsWithIndications[i].indication}>${allDrugsWithIndications[i].indication}</option>`);
+      }
 
-      $('#selectIndication').append(`<option value=${allDrugsWithIndications[i].indication}>${allDrugsWithIndications[i].indication}</option>`);
-
-      // remove duplicate options
-      $("#selectIndication option").val(function (idx, val) {
-        $(this).siblings('[value="' + val + '"]').remove();
-      });
-
-      console.log($('#selectIndication'));
+      // console.log($('#selectIndication'));
     }
   }
 }

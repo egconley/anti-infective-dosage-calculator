@@ -28,10 +28,14 @@
       <% if (i===0) { %>
       <th class="dose result">Dose:</th>
       <td class="dose" colspan="3"><%= doseRecKey[i].dose.split(';')[0] %> 
-        <br> 
+        <% if (doseRecKey[i].dose.split(';')[1]) { %>
+          <br> 
         <%= doseRecKey[i].dose.split(';')[1] %>
-        <br>
+        <% } %>
+        <% if (doseRecKey[i].dose.split(';')[2]) { %>
+          <br>
         <%= doseRecKey[i].dose.split(';')[2] %>
+        <% } %>
       </td>
       <% } else { %>
     <tr>
@@ -41,10 +45,14 @@
     <tr>
       <th></th>
       <td class="dose" colspan="3"><%= doseRecKey[i].dose.split(';')[0] %>
+        <% if (doseRecKey[i].dose.split(';')[1]) { %>
         <br>
         <%= doseRecKey[i].dose.split(';')[1] %>
+        <% } %>
+        <% if (doseRecKey[i].dose.split(';')[2]) { %>
         <br>
         <%= doseRecKey[i].dose.split(';')[2] %>
+        <% } %>
       </td>
     </tr>
     <% } %>
