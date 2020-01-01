@@ -26,7 +26,7 @@ function handleSelectedDrugForIndications() {
 }
 
 $('#selectIndication').css('background-color', '#F6F6F8');
-$('#selectDrug').on('change', function() {
+$('#selectDrug').on('change', function () {
   $('#selectIndication').css('border-color', 'rgb(169, 169, 169)');
   $('#selectIndication').css('background-color', '#F6F6F8');
   $('#selectIndication').empty();
@@ -35,8 +35,8 @@ $('#selectDrug').on('change', function() {
   console.log($('#selectIndication option').val());
 })
 
-$('#selectIndication').on('change', function() {
-  if ($('#selectIndication option').val()==='default') {
+$('#selectIndication').on('change', function () {
+  if ($('#selectIndication option').val() === 'default') {
     $('#selectIndication').css('border-color', 'rgb(244,88,66)');
     $('#selectIndication').css('background-color', 'rgb(244,88,66,0.1)');
   } else {
@@ -58,13 +58,22 @@ function getIndications() {
       console.log('indication to append', allDrugsWithIndications[i].indication)
 
       // $('#selectIndication').find(`<option value=${allDrugsWithIndications[i].indication}>${allDrugsWithIndications[i].indication}</option>`).remove();
-      if (allDrugsWithIndications[i].indication !== allDrugsWithIndications[i - 1].indication 
-        && allDrugsWithIndications[i].indication !== allDrugsWithIndications[i-2].indication 
-        && allDrugsWithIndications[i].indication !== allDrugsWithIndications[i-3].indication) {
+      if (allDrugsWithIndications[i].indication !== allDrugsWithIndications[i - 1].indication
+        && allDrugsWithIndications[i].indication !== allDrugsWithIndications[i - 2].indication
+        && allDrugsWithIndications[i].indication !== allDrugsWithIndications[i - 3].indication) {
         $('#selectIndication').append(`<option value=${allDrugsWithIndications[i].indication}>${allDrugsWithIndications[i].indication}</option>`);
       }
 
-      // console.log($('#selectIndication'));
+      //source: https://stackoverflow.com/questions/35208170/removing-duplicates-from-a-select-dropdown-using-javascript-or-jquery
+      var optionValues = [];
+      $('#selectIndication option').each(function () {
+        if ($.inArray(this.value, optionValues) > -1) {
+          $(this).remove()
+        } else {
+          optionValues.push(this.value);
+        }
+      });
+      //
     }
   }
 }
