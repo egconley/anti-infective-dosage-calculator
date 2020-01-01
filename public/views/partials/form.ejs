@@ -32,13 +32,13 @@
   </div>
 
   <label id="ageLabel">Age</label>
-  <input id="ageInput" type="number" name="age" placeholder="years">
+  <input id="ageInput" type="number" min=18 max=120 name="age" placeholder="years">
 
   <label id="weightLabel">Weight</label>
   <input id="weightInput" type="number" name="weight" step="0.01" placeholder="kg">
 
   <label id="creatinineLabel">Serum Creatinine</label>
-  <input id="creatinineInput" type="number" step="0.01" name="serumCr" placeholder="mg/dL">
+  <input id="creatinineInput" type="number" min=0.10 max=30 step="0.01" name="serumCr" placeholder="mg/dL">
 
   <button value="submit">Get Dose</button>
   </div>
