@@ -2,12 +2,12 @@
   <% if (doseRecKey) { %>
   <thead>
     <tr>
-      <th></th>
-      <th>Indication</th>
+      <th class="tableHeader"></th>
+      <th class="tableHeader">Indication</th>
       <% if (doseRecKey[0].crcl_level === "Assumes TIW HD.  Give dose after HD.") { %>
-        <th>Dialysis</th>
+        <th class="tableHeader">Dialysis</th>
         <% } else { %>
-        <th>CrCl Range (mL/min)</th>
+        <th class="tableHeader">CrCl Range (mL/min)</th>
         <% } %>
     </tr>
   </thead>
