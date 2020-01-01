@@ -44,4 +44,4 @@ CREATE TABLE IF NOT EXISTS hd_dosing (
   drug_name_short VARCHAR(255)
 );
 
-\copy hd_dosing (drug_name, crcl_level, indication, dose, crcl_cutoff_high, crcl_cutoff_low, drug_name_short) FROM 'hd_dosingEXP-12-28-19.csv' WITH CSV HEADER; 
+\copy hd_dosing (drug_name, crcl_level, indication, dose, crcl_cutoff_high, crcl_cutoff_low, drug_name_short) FROM 'hd_dosingEXP-12-31-19.csv' WITH CSV HEADER; 
