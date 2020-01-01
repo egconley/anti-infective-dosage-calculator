@@ -4,7 +4,11 @@
     <tr>
       <th></th>
       <th>Indication</th>
-      <th>CrCl Range (mL/min)</th>
+      <% if (doseRecKey[0].crcl_level === "Assumes TIW HD.  Give dose after HD.") { %>
+        <th>Dialysis</th>
+        <% } else { %>
+        <th>CrCl Range (mL/min)</th>
+        <% } %>
     </tr>
   </thead>
   <tbody>
@@ -23,7 +27,12 @@
     <tr>
       <% if (i===0) { %>
       <th class="dose result">Dose:</th>
-      <td class="dose" colspan="3"><%= doseRecKey[i].dose %></td>
+      <td class="dose" colspan="3"><%= doseRecKey[i].dose.split(';')[0] %> 
+        <br> 
+        <%= doseRecKey[i].dose.split(';')[1] %>
+        <br>
+        <%= doseRecKey[i].dose.split(';')[2] %>
+      </td>
       <% } else { %>
     <tr>
       <th></th>
@@ -31,7 +40,12 @@
     </tr>
     <tr>
       <th></th>
-      <td class="dose" colspan="3"><%= doseRecKey[i].dose %></td>
+      <td class="dose" colspan="3"><%= doseRecKey[i].dose.split(';')[0] %>
+        <br>
+        <%= doseRecKey[i].dose.split(';')[1] %>
+        <br>
+        <%= doseRecKey[i].dose.split(';')[2] %>
+      </td>
     </tr>
     <% } %>
     </tr>
