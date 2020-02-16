@@ -10,7 +10,7 @@ nav {
   font-family: 'Roboto Mono', monospace;
 }
 
-a:link {
+h1>a:link {
   text-decoration: none;
   color: black;
 }
@@ -37,8 +37,9 @@ h2 {
   padding: 10px;
 }
 
-h3 {
+h1, h3, p {
   padding: 10px;
+  line-height: 120%; 
 }
 
 h3 {
