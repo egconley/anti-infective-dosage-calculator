@@ -1,4 +1,4 @@
-# anti-infective-dosage-calculator
+# Anti-Infective Dosage Calculator
 We app that calculates creatinine clearance and renders the corresponding UW Medicine Renal Dosing Guidelines, given user-inputted medication, indication and patient-specific parameters and selected anti-infective drug.
 
 # Built with
