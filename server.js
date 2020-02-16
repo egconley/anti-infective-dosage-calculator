@@ -23,11 +23,26 @@ client.connect();
 client.on('error', err => console.error(err));
 
 app.get('/', homePage);
+app.get('/about', aboutPage);
+app.get('/technical', techDocPage);
+app.get('/resources', resourcesPage);
 
 // const constructors = require('./constructors.js'); 
 
 function homePage(req, res) {
   res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: null, drugsWithIndicationsKey: drugsWithIndications, CrClKey: null, doseRecKey: null });
+}
+
+function aboutPage(req, res) {
+  res.render('pages/about');
+}
+
+function techDocPage(req, res) {
+  res.render('pages/technical');
+}
+
+function resourcesPage(req, res) {
+  res.render('pages/resources');
 }
 
 let allDrugNames = [];
