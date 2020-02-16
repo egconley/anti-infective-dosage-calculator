@@ -10,7 +10,7 @@ nav {
   font-family: 'Roboto Mono', monospace;
 }
 
-h1>a:link {
+h1>a:link, li>a:link  {
   text-decoration: none;
   color: black;
 }
