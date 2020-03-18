@@ -60,6 +60,16 @@ function setPatientInfo(req) {
   return new Patient(sex, age, weight, creatinine);
 }
 
+function calculateCrCl(patient) {
+  let creatinineClearance;
+  if (patient.sex === "female") {
+    creatinineClearance = Math.round((0.85 * ((140 - patient.age) / (patient.creatinine)) * (patient.weight / 72)) * 100) / 100;
+  } else {
+    creatinineClearance = Math.round(((140 - patient.age) / (patient.creatinine)) * (patient.weight / 72) * 100) / 100;
+  }
+  return creatinineClearance;
+}
+
 // Exports
 exports.allDrugNames = allDrugNames;
 exports.drugsWithIndications = drugsWithIndications;
@@ -68,4 +78,5 @@ exports.Drug = Drug;
 exports.Patient = Patient;
 exports.DoseGuidelines = DoseGuidelines;
 exports.setPatientInfo = setPatientInfo;
+exports.calculateCrCl = calculateCrCl;
 
