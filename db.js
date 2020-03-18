@@ -1,9 +1,14 @@
+'use strict';
+
+// dependencies
 const pg = require('pg');
 
+// database connection
 const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
 client.on('error', err => console.error(err));
 
+// get all drug names for drug drop down
 function getAllDrugs() {
   const sql = `SELECT DISTINCT drug_name 
   FROM anti_microbial_drugs a
@@ -14,6 +19,7 @@ function getAllDrugs() {
   return client.query(sql);
 }
 
+// get all drugs with indications for indication drop down
 function getDrugsWithIndications() {
   const sql = `SELECT DISTINCT
               a.drug_name, b.indication
@@ -24,7 +30,7 @@ function getDrugsWithIndications() {
   return client.query(sql);
 }
 
-// get dose
+// get dose query
 function getDoseQuery(drug, indication, creatinineClearance) {
   let doseQuery;
   const sqlIndicationHemoD = `SELECT DISTINCT
@@ -99,11 +105,13 @@ function getDoseQuery(drug, indication, creatinineClearance) {
   return doseQuery;
 }
 
+// get dose guidelines
 function getDoseGuidelines(selectedDrug, selectedIndication, creatinineClearance) {
   const sql = getDoseQuery(selectedDrug, selectedIndication, creatinineClearance);
   return client.query(sql);
 }
 
+// exports
 exports.getAllDrugs = getAllDrugs;
 exports.getDrugsWithIndications = getDrugsWithIndications;
 exports.getDoseGuidelines = getDoseGuidelines;

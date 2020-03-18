@@ -1,27 +1,26 @@
 'use strict';
 
+// configs
 require('dotenv').config();
+
+// dependencies
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
-app.use(bodyParser.json());
-const cors = require('cors');
 require('ejs');
+const model = require('./model.js'); // data model
+const db = require('./db.js'); // database
+
+// declarations
+const app = express();
+app.use(bodyParser.json());
 const PORT = process.env.PORT || 3000;
-
 app.use(express.urlencoded({ extended: true }));
-
 let urlencodedParser = bodyParser.urlencoded({ extended: false });
 
+// routing
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
 app.set('views', __dirname + '/public/views');
-
-// model
-const model = require('./model.js');
-
-// connect to database
-const db = require('./db.js');
 
 app.get('/', homePage);
 app.get('/about', aboutPage);
@@ -54,7 +53,6 @@ app.post('/dose', urlencodedParser, function (req, res) {
 
   db.getDoseGuidelines(selectedDrug, selectedIndication, crcl).then(databaseResult => {
     const doseGuidelines = databaseResult.rows;
-    console.log('DOSE GUIDELINES: ' + JSON.stringify(doseGuidelines[0]));
     for (let i = 0; i < doseGuidelines.length; i++) {
       let dose = new model.DoseGuidelines(doseGuidelines[i]);
       doseRecArray.push(dose);

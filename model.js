@@ -1,10 +1,14 @@
+'use strict';
+
+// dependencies
 const db = require('./db.js');
 
+// instance variables
 let allDrugNames = [];
 let drugsWithIndications = [];
 let patientsArray = [];
 
-// Constructors
+// constructors
 function Drug(drug) {
   this.drug_name = drug;
   allDrugNames.push(this);
@@ -26,11 +30,9 @@ function DoseGuidelines(doseGuidelines) {
   this.indication = doseGuidelines.indication;
   this.dose = doseGuidelines.dose;
   this.notes = doseGuidelines.notes;
-  // doseRecArray.push(this);
-  // console.log("dose rec array: " + doseRecArray[0]);
 }
 
-// Getters
+// getters
 db.getAllDrugs().then(res => {
   const drug_names = res.rows.map(name => name.drug_name);
   drug_names.forEach(drug_name => {
@@ -51,7 +53,7 @@ db.getDrugsWithIndications().then(res => {
 });
 
 
-// Setters
+// setters
 function setPatientInfo(req) {
   const sex = req.body.sex;
   const age = Number(req.body.age);
@@ -62,7 +64,7 @@ function setPatientInfo(req) {
 
 function calculateCrCl(patient) {
   let creatinineClearance;
-  if (patient.sex === "female") {
+  if (patient.sex === 'female') {
     creatinineClearance = Math.round((0.85 * ((140 - patient.age) / (patient.creatinine)) * (patient.weight / 72)) * 100) / 100;
   } else {
     creatinineClearance = Math.round(((140 - patient.age) / (patient.creatinine)) * (patient.weight / 72) * 100) / 100;
@@ -70,7 +72,7 @@ function calculateCrCl(patient) {
   return creatinineClearance;
 }
 
-// Exports
+// exports
 exports.allDrugNames = allDrugNames;
 exports.drugsWithIndications = drugsWithIndications;
 exports.patientsArray = patientsArray;
