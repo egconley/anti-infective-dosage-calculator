@@ -184,6 +184,11 @@ function getDoseQuery(drug, indication) {
   return doseQuery;
 }
 
+function getDoseGuidelines(selectedDrug, selectedIndication) {
+  const sql = getDoseQuery(selectedDrug, selectedIndication);
+  return client.query(sql);
+}
+
 // populate dropdown menu with drug names
 function getAllDrugs() {
   const sql = `SELECT DISTINCT drug_name 
@@ -239,9 +244,9 @@ app.post('/dose', urlencodedParser, function (req, res) {
   handlePatientInfo(req);
   calculateCrCl();
   console.log('CrCl available for dose: ', creatinineClearance);
-  const sql = getDoseQuery(selectedDrug, selectedIndication);
+  // const sql = getDoseQuery(selectedDrug, selectedIndication);
 
-  doseGuidelines = client.query(sql).then(databaseResult => {
+  doseGuidelines = getDoseGuidelines(selectedDrug, selectedIndication).then(databaseResult => {
 
     console.log('databaseResult: ', databaseResult);
     doseGuidelines = databaseResult.rows;
