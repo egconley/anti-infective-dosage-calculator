@@ -57,7 +57,7 @@ let heightVar;
 let weightVar
 let creatinineVar;
 let creatinineClearance = -1986;
-let doseQuery;
+// let doseQuery;
 let doseGuidelines;
 let doseRec;
 
@@ -112,7 +112,8 @@ function handlePatientInfo(req) {
 }
 
 // get dose
-function getDose(drug, indication) {
+function getDoseQuery(drug, indication) {
+  let doseQuery;
   console.log('INDICATION: ', indication);
   if (indication) {
     if (isNaN(creatinineClearance)) {
@@ -180,6 +181,7 @@ function getDose(drug, indication) {
     }
   }
   console.log('DOSE QUERY: ', doseQuery);
+  return doseQuery;
 }
 
 // populate dropdown menu with drug names
@@ -237,9 +239,9 @@ app.post('/dose', urlencodedParser, function (req, res) {
   handlePatientInfo(req);
   calculateCrCl();
   console.log('CrCl available for dose: ', creatinineClearance);
-  getDose(selectedDrug, selectedIndication);
+  const sql = getDoseQuery(selectedDrug, selectedIndication);
 
-  doseGuidelines = client.query(doseQuery).then(databaseResult => {
+  doseGuidelines = client.query(sql).then(databaseResult => {
 
     console.log('databaseResult: ', databaseResult);
     doseGuidelines = databaseResult.rows;
