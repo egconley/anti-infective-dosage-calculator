@@ -157,10 +157,4 @@ app.post('/dose', urlencodedParser, function (req, res) {
   })
 })
 
-// Database queries
-// http://zetcode.com/javascript/nodepostgres/
-
-// express and exports - modularization and passing variables between js files
-// from https://stackoverflow.com/questions/9765215/global-variable-in-app-js-accessible-in-routes
-
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
