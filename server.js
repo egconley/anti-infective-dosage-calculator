@@ -5,7 +5,6 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
-// const pg = require('pg');
 const cors = require('cors');
 require('ejs');
 const PORT = process.env.PORT || 3000;
@@ -18,17 +17,13 @@ app.set('view engine', 'ejs');
 app.use(express.static('./public'));
 app.set('views', __dirname + '/public/views');
 
-// const client = new pg.Client(process.env.DATABASE_URL);
-// client.connect();
-// client.on('error', err => console.error(err));
+// connect to database
 const db = require('./db.js');
 
 app.get('/', homePage);
 app.get('/about', aboutPage);
 app.get('/technical', techDocPage);
 app.get('/resources', resourcesPage);
-
-// const constructors = require('./constructors.js'); 
 
 function homePage(req, res) {
   res.render('pages/index', { drugArrayKey: allDrugNames, selectedDrugKey: null, drugsWithIndicationsKey: drugsWithIndications, CrClKey: null, doseRecKey: null });
@@ -96,7 +91,6 @@ function calculateCrCl() {
 
 // User Patient Input
 function handlePatientInfo(req) {
-  // hdVar = req.body.hd;
   sexVar = req.body.sex;
   ageVar = Number(req.body.age);
   heightVar = Number(req.body.height);
@@ -104,7 +98,6 @@ function handlePatientInfo(req) {
   creatinineVar = Number(req.body.serumCr);
 
   let newPatient = new Patient(sexVar, ageVar, heightVar, weightVar, creatinineVar);
-  // console.log('hd', hdVar);
   console.log(newPatient);
 }
 
@@ -140,7 +133,6 @@ app.post('/dose', urlencodedParser, function (req, res) {
   handlePatientInfo(req);
   const crcl = calculateCrCl();
   console.log('CrCl available for dose: ', crcl);
-  // const sql = getDoseQuery(selectedDrug, selectedIndication);
 
   doseGuidelines = db.getDoseGuidelines(selectedDrug, selectedIndication, crcl).then(databaseResult => {
     console.log('databaseResult: ', databaseResult);
