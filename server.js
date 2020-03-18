@@ -114,7 +114,6 @@ db.getAllDrugs().then(res => {
 
 db.getDrugsWithIndications().then(res => {
   drugsWithIndications = res.rows;
-  console.log('DRUGS WITH INDICATIONS: ', res.rows);
 }).catch(err => {
   console.log(err.stack);
 }).finally(() => {
@@ -122,17 +121,11 @@ db.getDrugsWithIndications().then(res => {
 });
 
 app.post('/dose', urlencodedParser, function (req, res) {
-  console.log('post request successful!!', req.body);
 
-  let selectedDrug = req.body.drugs;
-  let selectedIndication = req.body.indications;
-
-  console.log('selected indication BACK END: ', selectedIndication);
-  console.log('req.body.drugs: ', selectedDrug);
-  console.log('patient info before function: ', patientsArray);
   handlePatientInfo(req);
   const crcl = calculateCrCl();
-  console.log('CrCl available for dose: ', crcl);
+  let selectedDrug = req.body.drugs;
+  let selectedIndication = req.body.indications;
 
   doseGuidelines = db.getDoseGuidelines(selectedDrug, selectedIndication, crcl).then(databaseResult => {
     console.log('databaseResult: ', databaseResult);
@@ -141,10 +134,6 @@ app.post('/dose', urlencodedParser, function (req, res) {
     for (let i = 0; i < doseGuidelines.length; i++) {
       new DoseGuidelines(doseGuidelines[i]);
     }
-
-    let doseRecStringified = JSON.stringify(doseRec);
-    console.log('stringified dose rec', doseRecStringified);
-
     res.render('pages/doseGuidance', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, drugsWithIndicationsKey: drugsWithIndications, CrClKey: crcl, doseRecKey: doseRecArray })
   })
 })
