@@ -190,7 +190,6 @@ function getAllDrugs() {
   (SELECT DISTINCT drug_name
    FROM dosing_by_crcl_level)
   ORDER BY drug_name;`;
-
   return client.query(sql);
 }
 
@@ -199,7 +198,6 @@ getAllDrugs().then(res => {
   drug_names.forEach(drug_name => {
     new Drug(drug_name);
   })
-
 }).catch(err => {
   console.log(err.stack);
 }).finally(() => {
@@ -208,12 +206,17 @@ getAllDrugs().then(res => {
 
 
 // list of drugs with specific indications for indication dropdown
-client.query(`SELECT DISTINCT
-             a.drug_name, b.indication
-             FROM anti_microbial_drugs a
-            LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
-            WHERE (b.indication IS NULL)=FALSE
-            ORDER BY drug_name;`).then(res => {
+function getDrugsWithIndications() {
+  const sql = `SELECT DISTINCT
+              a.drug_name, b.indication
+              FROM anti_microbial_drugs a
+              LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
+              WHERE (b.indication IS NULL)=FALSE
+              ORDER BY drug_name;`;
+  return client.query(sql);
+}
+
+getDrugsWithIndications().then(res => {
   drugsWithIndications = res.rows;
   console.log('DRUGS WITH INDICATIONS: ', res.rows);
 }).catch(err => {
