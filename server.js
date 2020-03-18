@@ -51,7 +51,6 @@ let heightVar;
 let weightVar
 let creatinineVar;
 let doseGuidelines;
-let doseRec;
 
 // Constructors
 function Drug(drug) {
