@@ -183,12 +183,18 @@ function getDose(drug, indication) {
 }
 
 // populate dropdown menu with drug names
-client.query(`SELECT DISTINCT drug_name 
-              FROM anti_microbial_drugs a
-              WHERE drug_name IN
-              (SELECT DISTINCT drug_name
-               FROM dosing_by_crcl_level)
-              ORDER BY drug_name;`).then(res => {
+function getAllDrugs() {
+  const sql = `SELECT DISTINCT drug_name 
+  FROM anti_microbial_drugs a
+  WHERE drug_name IN
+  (SELECT DISTINCT drug_name
+   FROM dosing_by_crcl_level)
+  ORDER BY drug_name;`;
+
+  return client.query(sql);
+}
+
+getAllDrugs().then(res => {
   const drug_names = res.rows.map(name => name.drug_name);
   drug_names.forEach(drug_name => {
     new Drug(drug_name);
@@ -199,6 +205,7 @@ client.query(`SELECT DISTINCT drug_name
 }).finally(() => {
   // client.end()
 });
+
 
 // list of drugs with specific indications for indication dropdown
 client.query(`SELECT DISTINCT
@@ -241,7 +248,7 @@ app.post('/dose', urlencodedParser, function (req, res) {
     let doseRecStringified = JSON.stringify(doseRec);
     console.log('stringified dose rec', doseRecStringified);
 
-    res.render('pages/doseGuidance', { drugArrayKey: allDrugNames,selectedDrugKey: selectedDrug, drugsWithIndicationsKey: drugsWithIndications, CrClKey: creatinineClearance, doseRecKey: doseRecArray })
+    res.render('pages/doseGuidance', { drugArrayKey: allDrugNames, selectedDrugKey: selectedDrug, drugsWithIndicationsKey: drugsWithIndications, CrClKey: creatinineClearance, doseRecKey: doseRecArray })
   })
 })
 
