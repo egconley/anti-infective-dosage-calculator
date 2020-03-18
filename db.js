@@ -27,73 +27,75 @@ function getDrugsWithIndications() {
 // get dose
 function getDoseQuery(drug, indication, creatinineClearance) {
   let doseQuery;
-  console.log('INDICATION: ', indication);
+  const sqlIndicationHemoD = `SELECT DISTINCT
+                                a.drug_name, 
+                                a.route, 
+                                b.crcl_level, 
+                                b.indication, 
+                                b.dose, 
+                                a.notes
+                                FROM anti_microbial_drugs a
+                                LEFT JOIN hd_dosing b ON a.drug_name = b.drug_name
+                                WHERE a.drug_name = $1 AND b.indication like $2
+                                ORDER BY drug_name;`;
+  const sqlIndicationCrCl = `SELECT DISTINCT
+                              a.drug_name, 
+                              a.route, 
+                              b.crcl_level, 
+                              b.indication, 
+                              b.dose, 
+                              a.notes
+                              FROM anti_microbial_drugs a
+                              LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
+                              WHERE a.drug_name = $1 AND $2 > b.crcl_cutoff_low AND $2 < b.crcl_cutoff_high AND b.indication like $3
+                              ORDER BY drug_name;`;    
+  const sqlNoIndicationHemoD = `SELECT DISTINCT
+                                a.drug_name, 
+                                a.route, 
+                                b.crcl_level, 
+                                b.indication, 
+                                b.dose, 
+                                a.notes
+                                FROM anti_microbial_drugs a
+                                LEFT JOIN hd_dosing b ON a.drug_name = b.drug_name
+                                WHERE a.drug_name = $1
+                                ORDER BY drug_name`;
+  const sqlNoIndicationCrCl = `SELECT DISTINCT
+                                a.drug_name, 
+                                a.route, 
+                                b.crcl_level, 
+                                b.indication, 
+                                b.dose, 
+                                a.notes
+                                FROM anti_microbial_drugs a
+                                LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
+                                WHERE a.drug_name = $1 AND $2 > b.crcl_cutoff_low AND $2 < b.crcl_cutoff_high
+                                ORDER BY drug_name;`;                           
   if (indication) {
     if (isNaN(creatinineClearance)) {
       doseQuery = {
-        text: `SELECT DISTINCT
-          a.drug_name, 
-          a.route, 
-          b.crcl_level, 
-          b.indication, 
-          b.dose, 
-          a.notes
-        FROM anti_microbial_drugs a
-        LEFT JOIN hd_dosing b ON a.drug_name = b.drug_name
-        WHERE a.drug_name = $1 AND b.indication like $2
-        ORDER BY drug_name;`,
+        text: sqlIndicationHemoD,
         values: [`${drug}`, `${indication}%`],
       }
     } else {
       doseQuery = {
-        text: `SELECT DISTINCT
-          a.drug_name, 
-          a.route, 
-          b.crcl_level, 
-          b.indication, 
-          b.dose, 
-          a.notes
-        FROM anti_microbial_drugs a
-        LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
-        WHERE a.drug_name = $1 AND $2 > b.crcl_cutoff_low AND $2 < b.crcl_cutoff_high AND b.indication like $3
-        ORDER BY drug_name;`,
+        text: sqlIndicationCrCl,
         values: [`${drug}`, `${creatinineClearance}`, `${indication}%`],
       }
     }
   } else {
     if (isNaN(creatinineClearance)) {
       doseQuery = {
-        text: `SELECT DISTINCT
-          a.drug_name, 
-          a.route, 
-          b.crcl_level, 
-          b.indication, 
-          b.dose, 
-          a.notes
-        FROM anti_microbial_drugs a
-        LEFT JOIN hd_dosing b ON a.drug_name = b.drug_name
-        WHERE a.drug_name = $1
-        ORDER BY drug_name;`,
+        text: sqlNoIndicationHemoD,
         values: [`${drug}`],
       }
     } else {
       doseQuery = {
-        text: `SELECT DISTINCT
-          a.drug_name, 
-          a.route, 
-          b.crcl_level, 
-          b.indication, 
-          b.dose, 
-          a.notes
-        FROM anti_microbial_drugs a
-        LEFT JOIN dosing_by_CrCl_level b ON a.drug_name = b.drug_name
-        WHERE a.drug_name = $1 AND $2 > b.crcl_cutoff_low AND $2 < b.crcl_cutoff_high
-        ORDER BY drug_name;`,
+        text: sqlNoIndicationCrCl,
         values: [`${drug}`, `${creatinineClearance}`],
       }
     }
   }
-  console.log('DOSE QUERY: ', doseQuery);
   return doseQuery;
 }
 
