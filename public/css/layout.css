@@ -58,7 +58,8 @@ form {
   /* border: 1px solid red; */
   display: grid;
   grid-template-columns: 200px 1fr;
-  grid-template-rows: 1fr 0.5fr 0.5fr 0.9fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
+  grid-template-rows: 1fr 1fr 1fr 0.9fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 1fr;
+  /* grid-template-rows: 1fr 0.5fr 0.5fr 0.9fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr; */
 }
 
 #selectDrugNote {
@@ -229,9 +230,38 @@ button {
   grid-row: 10 / 11;  
 }
 
+#patientParameters {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
-  body {
-    width: 786px;
+
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10%;
+  }
+
+  .card {
+    width: 768px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding-top: 8px;
+    padding-bottom: 4px;
+    background-color: #F6F6F8;
+  }
+
+  table {
+    background-color: #F6F6F8;
+    border-bottom: none !important;
+  }
+
+  .tableHeader {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  }
+
+  #patientParameters {
+    display: inline;
   }
 
   form {
