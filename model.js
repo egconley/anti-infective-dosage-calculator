@@ -14,12 +14,11 @@ function Drug(drug) {
   allDrugNames.push(this);
 }
 
-function Patient(sex, age, height, weight, creatinine) {
+function Patient(sex, age, weight, serumCreatinine) {
   this.sex = sex;
   this.age = age;
-  this.height = height;
   this.weight = weight;
-  this.creatinine = creatinine;
+  this.serumCreatinine = serumCreatinine;
   patientsArray.push(this);
 }
 
@@ -58,16 +57,16 @@ function setPatientInfo(req) {
   const sex = req.body.sex;
   const age = Number(req.body.age);
   const weight = Number(req.body.weight);
-  const creatinine = Number(req.body.serumCr);
-  return new Patient(sex, age, weight, creatinine);
+  const serumCr = Number(req.body.serumCr);
+  return new Patient(sex, age, weight, serumCr);
 }
 
 function calculateCrCl(patient) {
   let creatinineClearance;
   if (patient.sex === 'female') {
-    creatinineClearance = Math.round((0.85 * ((140 - patient.age) / (patient.creatinine)) * (patient.weight / 72)) * 100) / 100;
+    creatinineClearance = Math.round((0.85 * ((140 - patient.age) / (patient.serumCreatinine)) * (patient.weight / 72)) * 100) / 100;
   } else {
-    creatinineClearance = Math.round(((140 - patient.age) / (patient.creatinine)) * (patient.weight / 72) * 100) / 100;
+    creatinineClearance = Math.round(((140 - patient.age) / (patient.serumCreatinine)) * (patient.weight / 72) * 100) / 100;
   }
   return creatinineClearance;
 }
