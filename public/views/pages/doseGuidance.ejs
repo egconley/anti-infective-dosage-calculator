@@ -9,13 +9,17 @@
 
   <%- include('../partials/nav'); -%>
 
-  <% if (!isNaN(CrClKey)) { %>
-    <h2 class="result">Creatinine Clearance =<span id="CrClResult"><%= CrClKey %></span></h2>
-  <% } %>
-  
-  <%- include('../partials/dosage'); -%>
-
-  <span></span>
+  <main>
+    <div class="card">
+      <% if (!isNaN(CrClKey)) { %>
+      <h2 class="result">Creatinine Clearance =<span id="CrClResult"><%= CrClKey %></span></h2>
+      <% } else { %>
+        <h2 class="result"><span id="CrClResult">Hemodialysis Dosing Guidance</span></h2>
+      <% } %>
+    
+      <%- include('../partials/dosage'); -%>
+    </div>
+  </main>
 
   <%- include('../partials/scriptTags'); -%>
 </body>
