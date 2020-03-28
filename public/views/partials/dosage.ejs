@@ -36,7 +36,8 @@
           <br>
         <%= doseRecKey[i].dose.split('; ')[2] %>
         <% } %>
-      </td>
+        <button class="update" value="submit">Update</button>
+      <span></span></td>
       <% } else { %>
     <tr>
       <th></th>
@@ -53,6 +54,7 @@
         <br>
         <%= doseRecKey[i].dose.split('; ')[2] %>
         <% } %>
+        <button class="update" value="submit">Update</button>
       </td>
     </tr>
     <% } %>

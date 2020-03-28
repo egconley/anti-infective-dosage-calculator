@@ -85,6 +85,12 @@ th {
   /* border-top: 1px solid rgba(0, 0, 0, 0.5); */
 }
 
+.update {
+  vertical-align: middle;
+  margin-left: 44%;
+  margin-right: 44%;
+}
+
 .result {
   /* padding: 20px; */
   margin-top: 10px;
