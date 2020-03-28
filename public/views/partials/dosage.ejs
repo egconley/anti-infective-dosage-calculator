@@ -36,8 +36,7 @@
           <br>
         <%= doseRecKey[i].dose.split('; ')[2] %>
         <% } %>
-        <button class="update" value="submit">Update</button>
-      <span></span></td>
+      </td>
       <% } else { %>
     <tr>
       <th></th>
@@ -54,7 +53,6 @@
         <br>
         <%= doseRecKey[i].dose.split('; ')[2] %>
         <% } %>
-        <button class="update" value="submit">Update</button>
       </td>
     </tr>
     <% } %>
@@ -72,3 +70,4 @@
   <% console.log(`doseRecKey = ${doseRecKey}`) %>
   <% } %>
 </table>
+<button id="update" value="submit">Update</button>
