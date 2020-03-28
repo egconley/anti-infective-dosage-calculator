@@ -4,9 +4,11 @@ Web app that calculates creatinine clearance and renders the corresponding UW Me
 # Built with
 * [Node.js](https://nodejs.org/en/)
 * [npm](https://www.npmjs.com/)
-* [Express](https://expressjs.com/)
+* [Express.js](https://expressjs.com/)
 * [postgreSQL](https://www.postgresql.org/)
 * [EJS](https://ejs.co/)
+* [Auth0](https://auth0.com/docs/quickstarts)
+* [Passport.js](http://www.passportjs.org/docs/)
 
 # Resources
 * [2016-2017 UCLA Health Adult Anti-Infective Dosing Guidelines](https://asp.mednet.ucla.edu/files/view/UCLAAdultDosingCard.pdf)
