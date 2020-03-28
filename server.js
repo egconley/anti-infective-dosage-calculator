@@ -1,6 +1,8 @@
 'use strict';
 
 // resource: http://www.passportjs.org/docs/
+// resource: https://auth0.com/docs/quickstart/webapp/nodejs#configure-node-js-to-use-auth0
+
 // configs
 require('dotenv').config();
 
@@ -8,44 +10,42 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 require('ejs');
-var passport = require('passport'); 
-var LocalStrategy = require('passport-local').Strategy;
+var passport = require('passport');
+var Auth0Strategy = require('passport-auth0');
+var flash = require('connect-flash');
+var session = require('express-session');
+var util = require('util');
+var url = require('url');
+var querystring = require('querystring');
 const model = require('./models/model.js'); // data model
 const db = require('./models/db.js'); // database
-var users = require('./models/users');
 
-// Configure the local strategy for use by Passport.
-//
-// The local strategy require a `verify` function which receives the credentials
-// (`username` and `password`) submitted by the user.  The function must verify
-// that the password is correct and then invoke `cb` with a user object, which
-// will be set at `req.user` in route handlers after authentication.
-passport.use(new LocalStrategy(
-  function(username, password, cb) {
-    users.findByUsername(username, function(err, user) {
-      if (err) { return cb(err); }
-      if (!user) { return cb(null, false); }
-      if (user.password !== password) { return cb(null, false); }
-      return cb(null, user);
-    });
-  }));
+// configure Passport to use Auth0
+var strategy = new Auth0Strategy(
+  {
+    domain: process.env.AUTH0_DOMAIN,
+    clientID: process.env.AUTH0_CLIENT_ID,
+    clientSecret: process.env.AUTH0_CLIENT_SECRET,
+    callbackURL:
+      process.env.AUTH0_CALLBACK_URL || 'http://localhost:3000/callback'
+  },
+  function (accessToken, refreshToken, extraParams, profile, done) {
+    // accessToken is the token to call Auth0 API (not needed in the most cases)
+    // extraParams.id_token has the JSON Web Token
+    // profile has all the information from the user
+    return done(null, profile);
+  }
+);
 
-// Configure Passport authenticated session persistence.
-//
-// In order to restore authentication state across HTTP requests, Passport needs
-// to serialize users into and deserialize users out of the session.  The
-// typical implementation of this is as simple as supplying the user ID when
-// serializing, and querying the user record by ID from the database when
-// deserializing.
-passport.serializeUser(function(user, cb) {
-  cb(null, user.id);
+passport.use(strategy);
+
+// to keep a smaller payload
+passport.serializeUser(function (user, done) {
+  done(null, user);
 });
 
-passport.deserializeUser(function(id, cb) {
-  users.findById(id, function (err, user) {
-    if (err) { return cb(err); }
-    cb(null, user);
-  });
+passport.deserializeUser(function (user, done) {
+  done(null, user);
 });
 
 // initialize express app
@@ -53,22 +53,42 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-// Use application-level middleware for common functionality, including
-// logging, parsing, and session handling.
+// middleware
 app.use(bodyParser.json());
 let urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(require('morgan')('combined'));
-app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+var sess = { secret: 'keyboard cat', cookie: {}, resave: false, saveUninitialized: true };
+if (app.get('env') === 'production') {
+  // Trust first proxy, to prevent "Unable to verify authorization request state."
+  // errors with passport-auth0.
+  // Ref: https://github.com/auth0/passport-auth0/issues/70#issuecomment-480771614
+  // Ref: https://www.npmjs.com/package/express-session#cookiesecure
+  app.set('trust proxy', 1);
+  sess.cookie.secure = true; // serve secure cookies, requires https
+}
+app.use(session(sess));
+
 app.use(express.urlencoded({ extended: true }));
 
-// Initialize Passport and restore authentication state, if any, from the
-// session.
+// initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
 app.use(passport.session());
-
-// routing
 app.use(express.static('./public'));
-// Configure view engine to render EJS templates.
+
+app.use(flash());
+
+// handle auth failure error messages
+app.use(function (req, res, next) {
+  if (req && req.query && req.query.error) {
+    req.flash('error', req.query.error);
+  }
+  if (req && req.query && req.query.error_description) {
+    req.flash('error_description', req.query.error_description);
+  }
+  next();
+});
+
+// configure view engine to render EJS templates.
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/public/views');
 
@@ -76,7 +96,6 @@ app.get('/', homePage);
 app.get('/about', aboutPage);
 app.get('/technical', techDocPage);
 app.get('/resources', resourcesPage);
-app.get('/login', loginPage);
 
 function homePage(req, res) {
   res.render('pages/index', { drugArrayKey: model.allDrugNames, selectedDrugKey: null, drugsWithIndicationsKey: model.drugsWithIndications, CrClKey: null, doseRecKey: null });
@@ -94,19 +113,50 @@ function resourcesPage(req, res) {
   res.render('pages/resources');
 }
 
-function loginPage(req, res) {
-  res.render('pages/login');
-}
-
-app.get('/logout', function(req, res){
-  req.logout();
+// Auth0 login and redirect to '/'
+app.get('/login', passport.authenticate('auth0', {
+  scope: 'openid email profile'
+}), function (req, res) {
   res.redirect('/');
 });
 
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login', failureFlash: false })
-);
+// Auth0 final stage of authentication and redirect to '/'
+app.get('/callback', function (req, res, next) {
+  passport.authenticate('auth0', function (err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('pages/login'); }
+    req.logIn(user, function (err) {
+      if (err) { return next(err); }
+      const returnTo = req.session.returnTo;
+      delete req.session.returnTo;
+      res.redirect(returnTo || '/');
+    });
+  })(req, res, next);
+});
 
+// session logout and redirect to homepage
+app.get('/logout', (req, res) => {
+  req.logout();
+
+  var returnTo = req.protocol + '://' + req.hostname;
+  var port = req.connection.localPort;
+  if (port !== undefined && port !== 80 && port !== 443) {
+    returnTo += ':' + port;
+  }
+
+  var logoutURL = new url.URL(
+    util.format('https://%s/v2/logout', process.env.AUTH0_DOMAIN)
+  );
+  var searchString = querystring.stringify({
+    client_id: process.env.AUTH0_CLIENT_ID,
+    returnTo: returnTo
+  });
+  logoutURL.search = searchString;
+
+  res.redirect(logoutURL);
+});
+
+// get dose guidelines from database and render doseGuidance page
 app.post('/dose', urlencodedParser, function (req, res) {
 
   const patient = model.setPatientInfo(req);
@@ -121,11 +171,33 @@ app.post('/dose', urlencodedParser, function (req, res) {
       let dose = new model.DoseGuidelines(doseGuidelines[i]);
       doseRecArray.push(dose);
     }
-    if (req.user) {
-      console.log('USER: ' + req.user.username);
-    }
-    res.render('pages/doseGuidance', { drugArrayKey: model.allDrugNames, selectedDrugKey: selectedDrug, drugsWithIndicationsKey: model.drugsWithIndications, CrClKey: crcl, doseRecKey: doseRecArray, user: req.user })
+    var authorizedEmail = `"${process.env.AUTH0_USER}"`;
+    res.render('pages/doseGuidance', { drugArrayKey: model.allDrugNames, selectedDrugKey: selectedDrug, drugsWithIndicationsKey: model.drugsWithIndications, CrClKey: crcl, doseRecKey: doseRecArray, user: req.user.emails[0].value, authUser: authorizedEmail })
   })
 })
+
+// error handlers
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
+});
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

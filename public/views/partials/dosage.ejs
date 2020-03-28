@@ -70,6 +70,6 @@
   <% console.log(`doseRecKey = ${doseRecKey}`) %>
   <% } %>
 </table>
-<% if (user) { %>
+<% if (user.value===authUser.value) { %>
   <button id="update" value="submit">Update</button>
 <% } %>
