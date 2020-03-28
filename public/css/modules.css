@@ -81,8 +81,13 @@ th {
   vertical-align: middle;
   text-align: center;
   background-color: rgba(66, 133, 244, 0.1);
+  /* align-items: center; */
   /* border-bottom: 1px solid rgba(0, 0, 0, 0.5); */
   /* border-top: 1px solid rgba(0, 0, 0, 0.5); */
+}
+
+#update {
+  float: right;
 }
 
 .result {
