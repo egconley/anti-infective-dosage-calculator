@@ -70,4 +70,6 @@
   <% console.log(`doseRecKey = ${doseRecKey}`) %>
   <% } %>
 </table>
-<button id="update" value="submit">Update</button>
+<% if (user) { %>
+  <button id="update" value="submit">Update</button>
+<% } %>
