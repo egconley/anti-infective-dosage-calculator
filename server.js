@@ -23,7 +23,7 @@ const db = require('./models/db.js'); // database
 // configure Passport to use Auth0
 var strategy = new Auth0Strategy(
   {
-    domain: process.env.AUTH0_DOMAIN,
+    domain: 'dev-s4sen828.auth0.com',
     clientID: process.env.AUTH0_CLIENT_ID,
     clientSecret: process.env.AUTH0_CLIENT_SECRET,
     callbackURL:
