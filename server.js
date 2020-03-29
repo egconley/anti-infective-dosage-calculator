@@ -30,10 +30,13 @@ var strategy = new Auth0Strategy(
       process.env.AUTH0_CALLBACK_URL || 'http://localhost:3000/callback' || 'https://dosage-calculator.herokuapp.com//callback'
   },
   function (accessToken, refreshToken, extraParams, profile, done) {
-    // accessToken is the token to call Auth0 API (not needed in the most cases)
-    // extraParams.id_token has the JSON Web Token
-    // profile has all the information from the user
-    return done(null, profile);
+    var info = {
+      'profile': profile,
+      'accessToken': accessToken,
+      'refreshToken': refreshToken,
+      'extraParams': extraParams
+    };
+    return done(null, info);
   }
 );
 
@@ -58,14 +61,14 @@ app.use(bodyParser.json());
 let urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(require('morgan')('combined'));
 var sess = { secret: 'keyboard cat', cookie: {}, resave: false, saveUninitialized: true };
-// if (app.get('env') === 'production') {
+if (app.get('env') === 'production') {
   // Trust first proxy, to prevent "Unable to verify authorization request state."
   // errors with passport-auth0.
   // Ref: https://github.com/auth0/passport-auth0/issues/70#issuecomment-480771614
   // Ref: https://www.npmjs.com/package/express-session#cookiesecure
   app.set('trust proxy', 1);
   sess.cookie.secure = true; // serve secure cookies, requires https
-// }
+}
 app.use(session(sess));
 
 app.use(express.urlencoded({ extended: true }));
@@ -173,7 +176,8 @@ app.post('/dose', urlencodedParser, function (req, res) {
       doseRecArray.push(dose);
     }
     if (req.user) {
-      userEmail = req.user.emails[0].value;
+      console.log("USER: " + JSON.stringify(req.user.profile.emails));
+      userEmail = req.user.profile.emails[0].value;
     } else {
       userEmail = "not logged in";
     }
