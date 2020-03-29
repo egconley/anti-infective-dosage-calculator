@@ -61,12 +61,15 @@ app.use(bodyParser.json());
 let urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(require('morgan')('combined'));
 var sess = { secret: 'keyboard cat', cookie: {}, resave: false, saveUninitialized: true };
+console.log('ENVIRONMENT: ' + app.get('env'));
 if (app.get('env') === 'production') {
+  console.log('PRODUCTION!!!!!');
   // Trust first proxy, to prevent "Unable to verify authorization request state."
   // errors with passport-auth0.
   // Ref: https://github.com/auth0/passport-auth0/issues/70#issuecomment-480771614
   // Ref: https://www.npmjs.com/package/express-session#cookiesecure
   app.set('trust proxy', 1);
+  sess.proxy = true;
   sess.cookie.secure = true; // serve secure cookies, requires https
 }
 app.use(session(sess));
@@ -176,8 +179,8 @@ app.post('/dose', urlencodedParser, function (req, res) {
       doseRecArray.push(dose);
     }
     if (req.user) {
-      console.log("USER: " + JSON.stringify(req.user.profile.emails));
-      userEmail = req.user.profile.emails[0].value;
+      console.log("USER: " + JSON.stringify(req.user.emails));
+      userEmail = req.user.emails[0].value;
     } else {
       userEmail = "not logged in";
     }
