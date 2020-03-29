@@ -27,14 +27,14 @@ var strategy = new Auth0Strategy(
     clientID: process.env.AUTH0_CLIENT_ID,
     clientSecret: process.env.AUTH0_CLIENT_SECRET,
     callbackURL:
-      process.env.AUTH0_CALLBACK_URL || 'http://localhost:3000/callback' || 'https://dosage-calculator.herokuapp.com//callback'
+      process.env.AUTH0_CALLBACK_URL || 'https://dosage-calculator.herokuapp.com//callback'
   },
   function (accessToken, refreshToken, extraParams, profile, done) {
     var info = {
       'profile': profile,
       'accessToken': accessToken,
       'refreshToken': refreshToken,
-      'extraParams': extraParams.id_token
+      'extraParams': extraParams
     };
     return done(null, info);
   }
