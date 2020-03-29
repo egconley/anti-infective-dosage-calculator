@@ -62,6 +62,7 @@ let urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(require('morgan')('combined'));
 var sess = { secret: 'keyboard cat', cookie: {}, resave: false, saveUninitialized: true };
 console.log('ENVIRONMENT: ' + app.get('env'));
+app.enable('trust proxy');
 if (app.get('env') === 'production') {
   console.log('PRODUCTION!!!!!');
   // Trust first proxy, to prevent "Unable to verify authorization request state."
