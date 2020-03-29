@@ -34,7 +34,7 @@ var strategy = new Auth0Strategy(
       'profile': profile,
       'accessToken': accessToken,
       'refreshToken': refreshToken,
-      'extraParams': extraParams
+      'extraParams': extraParams.id_token
     };
     return done(null, info);
   }
