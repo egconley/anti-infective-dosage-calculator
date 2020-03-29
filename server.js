@@ -58,14 +58,14 @@ app.use(bodyParser.json());
 let urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(require('morgan')('combined'));
 var sess = { secret: 'keyboard cat', cookie: {}, resave: false, saveUninitialized: true };
-if (app.get('env') === 'production') {
+// if (app.get('env') === 'production') {
   // Trust first proxy, to prevent "Unable to verify authorization request state."
   // errors with passport-auth0.
   // Ref: https://github.com/auth0/passport-auth0/issues/70#issuecomment-480771614
   // Ref: https://www.npmjs.com/package/express-session#cookiesecure
   app.set('trust proxy', 1);
   sess.cookie.secure = true; // serve secure cookies, requires https
-}
+// }
 app.use(session(sess));
 
 app.use(express.urlencoded({ extended: true }));
@@ -164,6 +164,7 @@ app.post('/dose', urlencodedParser, function (req, res) {
   let selectedDrug = req.body.drugs;
   let selectedIndication = req.body.indications;
   let doseRecArray = [];
+  let userEmail;
 
   db.getDoseGuidelines(selectedDrug, selectedIndication, crcl).then(databaseResult => {
     const doseGuidelines = databaseResult.rows;
@@ -171,8 +172,13 @@ app.post('/dose', urlencodedParser, function (req, res) {
       let dose = new model.DoseGuidelines(doseGuidelines[i]);
       doseRecArray.push(dose);
     }
+    if (req.user) {
+      userEmail = req.user.emails[0].value;
+    } else {
+      userEmail = "not logged in";
+    }
     var authorizedEmail = `"${process.env.AUTH0_USER}"`;
-    res.render('pages/doseGuidance', { drugArrayKey: model.allDrugNames, selectedDrugKey: selectedDrug, drugsWithIndicationsKey: model.drugsWithIndications, CrClKey: crcl, doseRecKey: doseRecArray, user: req.user.emails[0].value, authUser: authorizedEmail })
+    res.render('pages/doseGuidance', { drugArrayKey: model.allDrugNames, selectedDrugKey: selectedDrug, drugsWithIndicationsKey: model.drugsWithIndications, CrClKey: crcl, doseRecKey: doseRecArray, user: userEmail, authUser: authorizedEmail })
   })
 })
 
@@ -180,24 +186,24 @@ app.post('/dose', urlencodedParser, function (req, res) {
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
-}
+// if (app.get('env') === 'development') {
+//   app.use(function (err, req, res, next) {
+//     res.status(err.status || 500);
+//     res.render('error', {
+//       message: err.message,
+//       error: err
+//     });
+//   });
+// }
 
-// production error handler
-// no stacktraces leaked to user
-app.use(function (err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
+// // production error handler
+// // no stacktraces leaked to user
+// app.use(function (err, req, res, next) {
+//   res.status(err.status || 500);
+//   res.render('error', {
+//     message: err.message,
+//     error: {}
+//   });
+// });
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
