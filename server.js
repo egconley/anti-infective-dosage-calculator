@@ -23,19 +23,13 @@ const db = require('./models/db.js'); // database
 // configure Passport to use Auth0
 var strategy = new Auth0Strategy(
   {
-    domain: 'dev-s4sen828.auth0.com',
+    domain: process.env.AUTH0_DOMAIN,
     clientID: process.env.AUTH0_CLIENT_ID,
     clientSecret: process.env.AUTH0_CLIENT_SECRET,
     callbackURL:
-      process.env.AUTH0_CALLBACK_URL || 'https://dosage-calculator.herokuapp.com/callback'
+      process.env.AUTH0_CALLBACK_URL
   },
   function (accessToken, refreshToken, extraParams, profile, done) {
-    // var info = {
-    //   'profile': profile,
-    //   'accessToken': accessToken,
-    //   'refreshToken': refreshToken,
-    //   'extraParams': extraParams
-    // };
     return done(null, profile);
   }
 );
@@ -61,7 +55,7 @@ app.use(bodyParser.json());
 let urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(require('morgan')('combined'));
 var sess = { secret: 'keyboard cat', cookie: {}, resave: false, saveUninitialized: true };
-console.log('ENVIRONMENT: ' + app.get('env'));
+
 app.enable('trust proxy');
 if (app.get('env') === 'production') {
   console.log('PRODUCTION!!!!!');
@@ -180,7 +174,6 @@ app.post('/dose', urlencodedParser, function (req, res) {
       doseRecArray.push(dose);
     }
     if (req.user) {
-      console.log("USER: " + JSON.stringify(req.user.emails));
       userEmail = req.user.emails[0].value;
     } else {
       userEmail = "not logged in";
