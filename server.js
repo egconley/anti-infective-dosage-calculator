@@ -98,14 +98,15 @@ app.get('/', homePage);
 app.get('/about', aboutPage);
 app.get('/technical', techDocPage);
 app.get('/resources', resourcesPage);
-app.use(methodOverride((request, response) => {
-  if (request.body && typeof request.body === 'object' && '_method' in request.body) {
+app.use(methodOverride((req, res) => {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
     // look in urlencoded POST bodies and delete it
-    let method = request.body._method;
-    delete request.body._method;
+    let method = req.body._method;
+    delete req.body._method;
     return method;
   }
 }));
+app.get('/update/:drug_id', db.updateNotes);
 
 function homePage(req, res) {
   res.render('pages/index', { drugArrayKey: model.allDrugNames, selectedDrugKey: null, drugsWithIndicationsKey: model.drugsWithIndications, CrClKey: null, doseRecKey: null });
