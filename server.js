@@ -19,6 +19,7 @@ var url = require('url');
 var querystring = require('querystring');
 const model = require('./models/model.js'); // data model
 const db = require('./models/db.js'); // database
+const methodOverride = require('method-override');
 
 // configure Passport to use Auth0
 var strategy = new Auth0Strategy(
@@ -97,6 +98,14 @@ app.get('/', homePage);
 app.get('/about', aboutPage);
 app.get('/technical', techDocPage);
 app.get('/resources', resourcesPage);
+app.use(methodOverride((request, response) => {
+  if (request.body && typeof request.body === 'object' && '_method' in request.body) {
+    // look in urlencoded POST bodies and delete it
+    let method = request.body._method;
+    delete request.body._method;
+    return method;
+  }
+}));
 
 function homePage(req, res) {
   res.render('pages/index', { drugArrayKey: model.allDrugNames, selectedDrugKey: null, drugsWithIndicationsKey: model.drugsWithIndications, CrClKey: null, doseRecKey: null });
