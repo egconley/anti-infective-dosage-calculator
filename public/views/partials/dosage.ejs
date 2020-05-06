@@ -27,15 +27,7 @@
     <tr>
       <% if (i===0) { %>
       <th class="dose result">Dose:</th>
-      <td class="dose" colspan="3"><%= doseRecKey[i].dose.split('; ')[0] %> 
-        <% if (doseRecKey[i].dose.split('; ')[1]) { %>
-          <br> 
-        <%= doseRecKey[i].dose.split('; ')[1] %>
-        <% } %>
-        <% if (doseRecKey[i].dose.split('; ')[2]) { %>
-          <br>
-        <%= doseRecKey[i].dose.split('; ')[2] %>
-        <% } %>
+      <td class="dose" colspan="3"><%= doseRecKey[i].dose %>
       </td>
       <% } else { %>
     <tr>
@@ -44,15 +36,7 @@
     </tr>
     <tr>
       <th></th>
-      <td class="dose" colspan="3"><%= doseRecKey[i].dose.split(';')[0] %>
-        <% if (doseRecKey[i].dose.split('; ')[1]) { %>
-        <br>
-        <%= doseRecKey[i].dose.split('; ')[1] %>
-        <% } %>
-        <% if (doseRecKey[i].dose.split('; ')[2]) { %>
-        <br>
-        <%= doseRecKey[i].dose.split('; ')[2] %>
-        <% } %>
+      <td class="dose" colspan="3"><%= doseRecKey[i].dose %>
       </td>
     </tr>
     <% } %>
@@ -70,6 +54,8 @@
   <% console.log(`doseRecKey = ${doseRecKey}`) %>
   <% } %>
 </table>
-<% if (user.value===authUser.value) { %>
+<% console.log(`user.value = ${user.value}`) %>
+<% console.log(`authUser.value = ${authUser.value}`) %>
+<% if (user.value===authUser.value && user.value!==undefined) { %>
   <button id="update" value="submit">Update</button>
 <% } %>

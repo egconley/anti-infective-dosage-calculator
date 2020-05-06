@@ -19,6 +19,7 @@ var url = require('url');
 var querystring = require('querystring');
 const model = require('./models/model.js'); // data model
 const db = require('./models/db.js'); // database
+const methodOverride = require('method-override');
 
 // configure Passport to use Auth0
 var strategy = new Auth0Strategy(
@@ -97,6 +98,15 @@ app.get('/', homePage);
 app.get('/about', aboutPage);
 app.get('/technical', techDocPage);
 app.get('/resources', resourcesPage);
+app.use(methodOverride((req, res) => {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    // look in urlencoded POST bodies and delete it
+    let method = req.body._method;
+    delete req.body._method;
+    return method;
+  }
+}));
+app.get('/update/:drug_id', db.updateNotes);
 
 function homePage(req, res) {
   res.render('pages/index', { drugArrayKey: model.allDrugNames, selectedDrugKey: null, drugsWithIndicationsKey: model.drugsWithIndications, CrClKey: null, doseRecKey: null });
@@ -178,7 +188,7 @@ app.post('/dose', urlencodedParser, function (req, res) {
     } else {
       userEmail = "not logged in";
     }
-    var authorizedEmail = `"${process.env.AUTH0_USER}"`;
+    var authorizedEmail = `${process.env.AUTH0_USER}`;
     res.render('pages/doseGuidance', { drugArrayKey: model.allDrugNames, selectedDrugKey: selectedDrug, drugsWithIndicationsKey: model.drugsWithIndications, CrClKey: crcl, doseRecKey: doseRecArray, user: userEmail, authUser: authorizedEmail })
   })
 })

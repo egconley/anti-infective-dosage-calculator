@@ -111,7 +111,31 @@ function getDoseGuidelines(selectedDrug, selectedIndication, creatinineClearance
   return client.query(sql);
 }
 
+// update notes
+function updateNotes(req, res) {
+  // destructure variables
+  const authorizedEmail = `${process.env.AUTH0_USER}`;
+  let userEmail;
+
+  if (req.user) {
+    userEmail = req.user.emails[0].value;
+  } else {
+    userEmail = 'not logged in';
+  }
+
+  let { drug_id } = req.params;
+  let SQL = `UPDATE anti_microbial_drugs SET notes=$2 WHERE id=$1;`;
+  let values = [drug_id, 'test note update 3'];
+
+  if (userEmail===authorizedEmail) {
+    return client.query(SQL, values);
+  } else {
+    res.redirect('/');
+  }
+}
+
 // exports
 exports.getAllDrugs = getAllDrugs;
 exports.getDrugsWithIndications = getDrugsWithIndications;
 exports.getDoseGuidelines = getDoseGuidelines;
+exports.updateNotes = updateNotes;
