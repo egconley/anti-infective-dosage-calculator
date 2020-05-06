@@ -188,7 +188,7 @@ app.post('/dose', urlencodedParser, function (req, res) {
     } else {
       userEmail = "not logged in";
     }
-    var authorizedEmail = `"${process.env.AUTH0_USER}"`;
+    var authorizedEmail = `${process.env.AUTH0_USER}`;
     res.render('pages/doseGuidance', { drugArrayKey: model.allDrugNames, selectedDrugKey: selectedDrug, drugsWithIndicationsKey: model.drugsWithIndications, CrClKey: crcl, doseRecKey: doseRecArray, user: userEmail, authUser: authorizedEmail })
   })
 })

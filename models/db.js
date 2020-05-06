@@ -114,14 +114,24 @@ function getDoseGuidelines(selectedDrug, selectedIndication, creatinineClearance
 // update notes
 function updateNotes(req, res) {
   // destructure variables
-  console.log("req: ", req);
+  const authorizedEmail = `${process.env.AUTH0_USER}`;
+  let userEmail;
+
+  if (req.user) {
+    userEmail = req.user.emails[0].value;
+  } else {
+    userEmail = 'not logged in';
+  }
+
   let { drug_id } = req.params;
-  // need SQL to update the specific task that we were on
   let SQL = `UPDATE anti_microbial_drugs SET notes=$2 WHERE id=$1;`;
-  // use request.params.task_id === whatever task we were on
-  let values = [drug_id, 'test note update'];
-  // console.log(values);
-  return client.query(SQL, values);
+  let values = [drug_id, 'test note update 3'];
+
+  if (userEmail===authorizedEmail) {
+    return client.query(SQL, values);
+  } else {
+    res.redirect('/');
+  }
 }
 
 // exports
