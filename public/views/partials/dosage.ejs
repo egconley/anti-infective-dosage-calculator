@@ -54,6 +54,8 @@
   <% console.log(`doseRecKey = ${doseRecKey}`) %>
   <% } %>
 </table>
-<% if (user.value===authUser.value) { %>
+<% console.log(`user.value = ${user.value}`) %>
+<% console.log(`authUser.value = ${authUser.value}`) %>
+<% if (user.value===authUser.value && user.value!==undefined) { %>
   <button id="update" value="submit">Update</button>
 <% } %>
