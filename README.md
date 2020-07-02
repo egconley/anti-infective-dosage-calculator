@@ -15,6 +15,11 @@ Web app that calculates creatinine clearance and renders the corresponding UW Me
 * [Auth0](https://auth0.com/docs/quickstarts)
 * [Passport.js](http://www.passportjs.org/docs/)
 
+# Screenshots
+
+![](./screenshots/calculator.png)
+![](./screenshots/dose.png)
+
 # Resources
 * [2016-2017 UCLA Health Adult Anti-Infective Dosing Guidelines](https://asp.mednet.ucla.edu/files/view/UCLAAdultDosingCard.pdf)
 * [UW Medicine Renal Dosing Guidelines](https://occam.uwmedicine.org/antibiotic-reference-kit/uw-medicine-renal-dosing-guidelines/)
